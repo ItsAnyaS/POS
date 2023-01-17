@@ -1,4 +1,4 @@
-POS is an open sourse Point of sale terminal desinged to work on any platform with limited computing power.  This system is designed to be able to provide small vendors with alternatie to large comapnies that charge large fees and require you use their own hardware.
+POS is an open sourse Point of sale terminal desinged to work on any platform with limited computing power.
 
 ## Agenda
 
