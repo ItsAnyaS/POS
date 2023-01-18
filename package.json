@@ -1,0 +1,26 @@
+{
+  "name": "pos",
+  "version": "1.0.0",
+  "description": "POS is an open sourse Point of sale terminal desinged to work on any platform with limited computing power.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ItsAnyaS/POS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ItsAnyaS/POS/issues"
+  },
+  "homepage": "https://github.com/ItsAnyaS/POS#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20",
+    "sequelize": "^6.28.0"
+  }
+}
