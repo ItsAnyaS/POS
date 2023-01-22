@@ -1,15 +1,16 @@
 const express = require('express')
-const { sequelize, Category } = require('./models')
-const category = require('./models/category')
+const { sequelize } = require('./models')
 const app = express()
 app.use(express.json())
 
 const itemRouter = require('./routes/items')
 const categoryRouter = require('./routes/categories')
+const userRouter = require('./routes/users')
 
 
 app.use('/items', itemRouter)
 app.use('/categories', categoryRouter)
+app.use('/users', userRouter)
 
 
 
