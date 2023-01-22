@@ -1,5 +1,5 @@
 const express = require('express')
-const { sequelize, Category } = require('./models')
+const { sequelize, Category, Item } = require('./models')
 const category = require('./models/category')
 const app = express()
 app.use(express.json())
@@ -26,6 +26,24 @@ app.post('/categories', async(req,res) => {
         return res.json(err)
     }
 })
+
+app.get('/items', async(req, res)=> {
+    let items = await Item.findAll()
+    return res.json(items)
+})
+
+app.post('/items', async(req, res)=> {
+    const {name, price, categoryId, photoLink} = req.body
+    try{
+        let item = await Item.create({name, price, categoryId, photoLink})
+        return res.json(item)
+    }catch(err){
+        console.log(err)
+        return res.json(err).status(500)
+    }
+})
+
+
 
 
 
