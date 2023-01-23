@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     total_cost: DataTypes.INTEGER,
     total_tax: DataTypes.INTEGER,
     total_tip: DataTypes.INTEGER,
-    // sessionId: DataTypes.INTEGER
+    sessionId: DataTypes.INTEGER
   }, {
     sequelize,
     tableName: 'transactions',

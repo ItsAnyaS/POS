@@ -17,15 +17,21 @@ router.get('/', async(req, res)=> {
 
 //* Create a transaction, this will be used when a transaction is completed in the client side
 router.post('/', async(req,res)=> {
-    const {number_of_items, items, total_cost, total_tax, total_tip} = req.body
+    const {number_of_items, items, total_cost, total_tax, total_tip, sessionId} = req.body
     try{
-        let transaction = await Transaction.create({number_of_items, items, total_cost, total_tax, total_tip})
+        let transaction = await Transaction.create({number_of_items, items, total_cost, total_tax, total_tip, sessionId})
         return res.json(transaction)
     }catch(err){
         console.log(err)
-        return res.status(500)
+        return res.json(err).status(500)
     }
 })
+
+// router.delete('/:id', async(req,res)=> {
+//     let transaction = await Transaction.findOne({where: {id: req.params.id}})
+//     Transaction.destroy({where: {id: req.params.id }})
+//     return res.json(transaction)
+// })
 
 
 module.exports = router
