@@ -3,7 +3,7 @@ const router = express.Router()
 
 const { Category} = require('../models')
 
-//index for categories
+//*index for categories (get all categories)
 router.get('/', async(req, res)=> {
     try{
         let categories = await Category.findAll()
@@ -14,9 +14,19 @@ router.get('/', async(req, res)=> {
         // res.send('hi')
     }
 })
+//* Get all items that belong to a category by category ID
+router.get('/items/:categoryId', async(req, res)=> {
+    try {
+        let category = await Category.findOne({where: {id: req.params.categoryId}})
+        let items = await category.getItems()
+        return res.json(items)
+    }catch(err){
+        console.log(err)
+        return res.status(500)
+    }
+})
 
-
-//create for categories
+//* Create categories
 router.post('/', async(req,res) => {
     const {name, description} = req.body
     try{
@@ -27,5 +37,6 @@ router.post('/', async(req,res) => {
         return res.json(err)
     }
 })
+
 
 module.exports = router

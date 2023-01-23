@@ -3,7 +3,7 @@ const router = express.Router()
 
 const { Item } = require('../models')
 
-//index for items
+//*index for items (get all items)
 router.get('/', async(req, res)=> {
     try{
         let items = await Item.findAll()
@@ -15,7 +15,7 @@ router.get('/', async(req, res)=> {
 })
 
 
-//create for items
+//* Create items
 router.post('/', async(req, res)=> {
     const {name, price, categoryId, photoLink} = req.body
     try{
