@@ -54,4 +54,17 @@ router.post('/', async(req,res)=> {
     }
 })
 
+//* Shows All transactions for a session using session id
+
+router.get('/transactions/:sessionId', async(req, res)=> {
+    try{
+        let session = await  Session.findOne({where: {id: req.params.sessionId}})
+        let transactions = await session.getTransactions()
+        return res.json(transactions)
+    }catch(err){
+        console.log(err)
+        return res.json(err).status(500)
+    }
+})
+
 module.exports = router

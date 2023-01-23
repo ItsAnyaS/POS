@@ -17,8 +17,6 @@ app.use('/sessions', sessionRouter)
 app.use('/transactions', transactionRouter)
 
 
-//! Need to add migration for adding a session id to transactions
-
 
 app.listen({port: 3000}, async() => {
     console.log('server is up')
