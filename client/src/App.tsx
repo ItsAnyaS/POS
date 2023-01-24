@@ -1,26 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar';
+import Main from './components/Main';
+import Sidebar from './components/Sidebar';
+import {useEffect, useState} from 'react'
+// import Button from 'react-bootstrap/Button'
+// import 'bootstrap/dist/css/bootstrap.min.css';
+interface ItemObj {
+  id: number,
+  name: string,
+  photoLink: string,
+  price: number,
+  categoryId: number
+}
 
 function App() {
+//!Solve how to pass interfaces as props
+
+const [cart, setCart] = useState<ItemObj[]>([])
+
+const getCartFromLocalStorage = () => {
+  let lsCart = window.localStorage.getItem('cart')
+  if (lsCart) {
+    setCart(JSON.parse(lsCart))
+  } else {
+    window.localStorage.setItem('cart', JSON.stringify([]))
+  }
+}
+
+  useEffect(()=> {
+    getCartFromLocalStorage()
+
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Main setCart={setCart}/>
+    <Navbar/>
+    <Sidebar cart={cart} setCart={setCart}/>
     </div>
-  );
+  )
 }
 
 export default App;
