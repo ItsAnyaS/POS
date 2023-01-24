@@ -13,30 +13,65 @@ interface Props {
 }
 
 const AddItemModel: React.FC<Props> = ({setIsShowingModel, categories}) => {
-return (
+
+    const [AddItemForm, setAddItemForm] = useState({categoryId: 1})
+
+    const handleChangeString = (e: React.ChangeEvent<HTMLInputElement>) => {
+            setAddItemForm(
+                {...AddItemForm,
+               [ e.target.name]: e.target.value.toLocaleLowerCase()}
+            )
+        }
+
+
+    const handleChangeNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+            setAddItemForm(
+                {...AddItemForm,
+               [ e.target.name]: parseInt(e.target.value)*100}
+            )
+        }
+
+        const handleFormSubmit = async(e: React.SyntheticEvent) => {
+            e.preventDefault()
+            let req = await fetch('http://localhost:3000/items', {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(AddItemForm)
+            })
+            let res = await req.json()
+
+            if (req.ok){
+                setIsShowingModel(false)
+            }
+        }
+    
+        console.log(AddItemForm)
+        return (
     <div id="add-item-model" onClick={()=> {setIsShowingModel(false)}}>
         <div id="add-item-model-container" onClick={(e)=> {e.stopPropagation()}}>
             <section id="add-item-model-header"><h2>Add Item</h2></section>
-            <form  id="add-item-model-form">
+            <form  id="add-item-model-form" onSubmit={(e)=> {handleFormSubmit(e)}}>
                 <fieldset>
                     <legend>Name</legend>
-                    <input type="text" className="add-item-model-input" name="name" />
+                    <input type="text" required onChange={(e)=> {handleChangeString(e)}} className="add-item-model-input" name="name" />
                 </fieldset>
                 <fieldset>
                 <legend>Price</legend>
-                <input type="text" className="add-item-model-input" name="price" />
+                <input type="number" required onChange={(e)=> {handleChangeNumber(e)}} className="add-item-model-input" name="price" />
                 </fieldset>
                 <fieldset>
                     <legend>Image</legend>
-                    <input type="text" className="add-item-model-input" name="photoLink" />
+                    <input type="text" required onChange={(e)=> {handleChangeString(e)}} className="add-item-model-input" name="photoLink" />
                 </fieldset>
                 <fieldset>
                     <legend>Category</legend>
-                    <select name="category" id="" className="add-item-model-select">
+                    <select name="categoryId" onChange={(e)=> {setAddItemForm({...AddItemForm, [e.target.name]: parseInt(e.target.value)})}}  className="add-item-model-select">
                         {
                             categories.map(category => {
                                 return (
-                                    <option value={category?.id}>{category?.name}</option>
+                                    <option  value={category?.id}>{category?.name}</option>
                                 )
                             })
                         }

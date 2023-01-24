@@ -200,7 +200,7 @@ justify-content: center;
 #add-item-model-form fieldset{
 width: 75%;
 margin:10px 0;
-padding: 8px;
+padding: 3px 8px;
 border: 1px solid rgba(0, 0, 0, 0.495);
 }
 
@@ -212,6 +212,7 @@ border: 1px solid rgba(0, 0, 0, 0.495);
 height: 100%;
 width: 100%;
 border: none;
+font-size: 1.1em;
 }
 
 
