@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState, Dispatch, SetStateAction  } from 'react'
+import {FiTrash2} from 'react-icons/fi'
 
 //! Need to change tax rate with each user
 const taxRate = 0.10
@@ -63,7 +64,7 @@ useEffect(()=> {
               return (
           <div className="cart-item" key={`cart${item?.id}`}>
             <h4>{item?.name}</h4>
-            <img src="trash-outline.svg" alt="" onClick={()=> {removeItemFromCart(item)}} />
+            <FiTrash2 onClick={()=> {removeItemFromCart(item)}}/>
             <p>${item?.price}</p>
           </div>
               )

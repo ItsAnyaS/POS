@@ -1,12 +1,21 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { NavLink } from 'react-router-dom'
+import CategoryItem from './CategoryItem'
+
+interface CategoryObj {
+    name: string,
+    description: string,
+    id: number
+}
 
 const CategorySelectionBar = () => {
 
-    const [categories, setCategories] = useState<string[]>([])
+    const [categories, setCategories] = useState<CategoryObj[]>([])
+    const [currentlyHighlighted, setCurrentlyHighlighted] = useState(true)
 
     const getCategories = async() => {
-        let req = await fetch('http://localhost:3000/categories/names')
+        let req = await fetch('http://localhost:3000/categories')
         let res = await req.json()
         setCategories(res)
     }
@@ -18,14 +27,14 @@ const CategorySelectionBar = () => {
     return (
         <section id="category-selection">
              <div className="category-item">
-                        <p>All</p>
+                <NavLink to='/' style={{"color": "rgba(0, 0, 0, 0.711)", "textDecoration": "none"}}>
+                        <p >All</p>
+                        </NavLink>
                         </div>
             {
-                categories.map(category => {
+            categories.map(category => {
                     return (
-                        <div className="category-item">
-                        <p>{category}</p>
-                        </div>
+                        <CategoryItem category={category}/>
 
                     )
                 })

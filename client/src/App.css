@@ -75,8 +75,8 @@ padding: 0px 15px;
   text-transform: capitalize;
 }
 
-.cart-item img {
-  width: 15px;
+.cart-item p {
+  margin-left: 10px;
 }
 
 #tax {
@@ -142,4 +142,8 @@ align-items: center;
 
 .category-item p {
   text-transform: capitalize;
+}
+
+.highlighted {
+  color: dodgerblue;
 }

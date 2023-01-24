@@ -4,9 +4,9 @@ import Navbar from './components/Navbar';
 import Main from './components/Main';
 import Sidebar from './components/Sidebar';
 import CategorySelectionBar from './components/CategorySelectionBar';
+import ItemsByCategory from './components/ItemsByCategory';
 import {useEffect, useState} from 'react'
-// import Button from 'react-bootstrap/Button'
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 interface ItemObj {
   id: number,
   name: string,
@@ -16,7 +16,6 @@ interface ItemObj {
 }
 
 function App() {
-//!Solve how to pass interfaces as props
 
 const [cart, setCart] = useState<ItemObj[]>([])
 
@@ -36,10 +35,16 @@ const getCartFromLocalStorage = () => {
 
   return (
     <div className="App">
-   <CategorySelectionBar/>
-    <Main setCart={setCart}/>
-    <Navbar/>
-    <Sidebar cart={cart} setCart={setCart}/>
+      <Router>
+        <Navbar/>
+        <CategorySelectionBar/>
+        <Sidebar cart={cart} setCart={setCart}/>
+        
+        <Routes>
+          <Route path='/' element={<Main setCart={setCart}/>}/>
+          <Route path='/categories/:id' element={ <ItemsByCategory setCart={setCart}/>}/>
+        </Routes>
+    </Router>
     </div>
   )
 }
