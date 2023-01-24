@@ -14,7 +14,7 @@ interface CategoryObj {
 const CategorySelectionBar = () => {
 
     const [categories, setCategories] = useState<CategoryObj[]>([])
-    const [isShowingModel, setIsShowingModel] = useState<boolean>(true)
+    const [isShowingModel, setIsShowingModel] = useState<boolean>(false)
 
     const getCategories = async() => {
         let req = await fetch('http://localhost:3000/categories')

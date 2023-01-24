@@ -5,6 +5,7 @@ import Main from './components/Main';
 import Sidebar from './components/Sidebar';
 import CategorySelectionBar from './components/CategorySelectionBar';
 import ItemsByCategory from './components/ItemsByCategory';
+import TransactionPage from './components/TransactionPage';
 import {useEffect, useState} from 'react'
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 interface ItemObj {
@@ -42,6 +43,7 @@ const getCartFromLocalStorage = () => {
         <Routes>
           <Route path='/' element={<Main setCart={setCart}/>}/>
           <Route path='/categories/:id' element={ <ItemsByCategory setCart={setCart}/>}/>
+          <Route path='/transactions' element={ <TransactionPage/> }/> 
         </Routes>
     </Router>
     </div>

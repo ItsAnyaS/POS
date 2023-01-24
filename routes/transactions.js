@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const { Transaction } = require('../models') 
+const { Transaction, User, Session, Item } = require('../models') 
 
 //* Index (Get all transactions)
 
@@ -27,11 +27,23 @@ router.post('/', async(req,res)=> {
     }
 })
 
-// router.delete('/:id', async(req,res)=> {
-//     let transaction = await Transaction.findOne({where: {id: req.params.id}})
-//     Transaction.destroy({where: {id: req.params.id }})
-//     return res.json(transaction)
-// })
+//* Get all transactions that belong to a user with user's uuid
+//! This method only shows the transactions from the most recent session
+router.get('/:uuid', async(req, res)=> {
+    try{
+        let user = await User.findOne({uuid: req.params.uuid})
+        if (user){
+            let session =  await Session.findOne({where: {userId: user.id}, order: [ [ 'updatedAt', 'DESC' ]]})
+            let transactions = await session.getTransactions()
+            // let arr = await transactions.map(async(trans)=> {Item.findAll({where: {transactionId:}})})
+            // console.log(arr)
+            return res.json(transactions)
+        }
+    }catch(err){
+        console.log(err)
+        return res.json(err)
+    }
+})
 
 
 module.exports = router

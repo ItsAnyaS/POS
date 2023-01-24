@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Transaction.init({
     number_of_items: DataTypes.INTEGER,
-    items: DataTypes.ARRAY(DataTypes.DECIMAL),
+    items: DataTypes.JSONB,
     total_cost: DataTypes.INTEGER,
     total_tax: DataTypes.INTEGER,
     total_tip: DataTypes.INTEGER,
