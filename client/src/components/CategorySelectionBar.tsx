@@ -42,7 +42,7 @@ const CategorySelectionBar = () => {
                 })
             }
             <BsThreeDots id="category-menu-icon" onClick={()=> {setIsShowingModel(true)}}/>
-           { isShowingModel && <AddItemModel setIsShowingModel={setIsShowingModel}/>}
+           { isShowingModel && <AddItemModel categories={categories} setIsShowingModel={setIsShowingModel}/>}
       </section>
     )
 }

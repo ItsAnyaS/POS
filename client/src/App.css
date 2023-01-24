@@ -172,6 +172,52 @@ justify-content: center;
   width: 40%;
   height: 50%;
   background-color: white;
-  border-radius: 10px;
   padding: 50px;
+  position: relative;
 }
+
+#add-new-item-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: dodgerblue;
+  color: white;
+  border: none;
+  width: 20%;
+  font-size: 1.4em;
+  padding: 10px;
+  font-weight: 600;
+}
+
+#add-item-model-header{
+
+}
+
+#add-item-model-form{
+
+}
+
+#add-item-model-form fieldset{
+width: 75%;
+margin:10px 0;
+padding: 8px;
+border: 1px solid rgba(0, 0, 0, 0.495);
+}
+
+#add-item-model-form legend{
+
+}
+
+#add-item-model-form input {
+height: 100%;
+width: 100%;
+border: none;
+}
+
+
+#add-item-model-form select {
+font-size: 1.2em;
+padding: 5px;
+text-transform: capitalize;
+}
+
