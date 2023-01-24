@@ -14,12 +14,12 @@ interface Props {
 
 const CategoryItem: React.FC<Props> = ({category}) => {
 
-    const [isHighlighted, setIsHightLighted] = useState<boolean>(false)
+    // const [isHighlighted, setIsHightLighted] = useState<boolean>(false)
 return (
-    <div className="category-item" key={category?.id} onClick={()=> {setIsHightLighted(true)}}>
-                        <NavLink style={{"color": "rgba(0, 0, 0, 0.711)", "textDecoration": "none"}} to={`/categories/${category?.id}`}>
-                            <p className={isHighlighted? 'highlighted': ''} >{category?.name}</p>
-                        </NavLink>
+    <div className="category-item" key={category?.id} >
+        <NavLink style={{"color": "rgba(0, 0, 0, 0.711)", "textDecoration": "none"}} to={`/categories/${category?.id}`}>
+            <p  >{category?.name}</p>
+        </NavLink>
     </div>
 )
 }

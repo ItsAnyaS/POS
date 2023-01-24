@@ -2,6 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { NavLink } from 'react-router-dom'
 import CategoryItem from './CategoryItem'
+import { BsThreeDots} from 'react-icons/bs'
+import AddItemModel from './AddItemModel'
 
 interface CategoryObj {
     name: string,
@@ -12,7 +14,7 @@ interface CategoryObj {
 const CategorySelectionBar = () => {
 
     const [categories, setCategories] = useState<CategoryObj[]>([])
-    const [currentlyHighlighted, setCurrentlyHighlighted] = useState(true)
+    const [isShowingModel, setIsShowingModel] = useState<boolean>(true)
 
     const getCategories = async() => {
         let req = await fetch('http://localhost:3000/categories')
@@ -39,6 +41,8 @@ const CategorySelectionBar = () => {
                     )
                 })
             }
+            <BsThreeDots id="category-menu-icon" onClick={()=> {setIsShowingModel(true)}}/>
+           { isShowingModel && <AddItemModel setIsShowingModel={setIsShowingModel}/>}
       </section>
     )
 }

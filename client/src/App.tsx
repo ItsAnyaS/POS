@@ -39,7 +39,6 @@ const getCartFromLocalStorage = () => {
         <Navbar/>
         <CategorySelectionBar/>
         <Sidebar cart={cart} setCart={setCart}/>
-        
         <Routes>
           <Route path='/' element={<Main setCart={setCart}/>}/>
           <Route path='/categories/:id' element={ <ItemsByCategory setCart={setCart}/>}/>
