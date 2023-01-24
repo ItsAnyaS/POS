@@ -19,7 +19,8 @@
   display: flex;
   gap: 20px;
   padding: 20px;
-  width: 70%;
+  width: calc(70% - 40px);
+  flex-wrap: wrap;
 }
 
 .item-card {
