@@ -1,7 +1,9 @@
 const express = require('express')
 const { sequelize } = require('./models')
+const cors = require('cors')
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 const itemRouter = require('./routes/items')
 const categoryRouter = require('./routes/categories')

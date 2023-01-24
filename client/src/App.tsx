@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Main from './components/Main';
 import Sidebar from './components/Sidebar';
+import CategorySelectionBar from './components/CategorySelectionBar';
 import {useEffect, useState} from 'react'
 // import Button from 'react-bootstrap/Button'
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -35,6 +36,7 @@ const getCartFromLocalStorage = () => {
 
   return (
     <div className="App">
+   <CategorySelectionBar/>
     <Main setCart={setCart}/>
     <Navbar/>
     <Sidebar cart={cart} setCart={setCart}/>

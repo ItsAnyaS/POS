@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(Category, { foreignKey: 'categoryId'})
       // define association here
     }
+
+    toJSON() {
+      return { ...this.get(), updatedAt: undefined, createdAt: undefined }
+    }
   }
   Item.init({
     name: DataTypes.STRING,

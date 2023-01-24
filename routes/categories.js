@@ -26,6 +26,22 @@ router.get('/items/:categoryId', async(req, res)=> {
     }
 })
 
+//* Get all category names
+router.get('/names', async(req, res)=> {
+ try{
+    let categories = await Category.findAll()
+    let names = categories.map(category => {
+        return (
+            category.name
+        )
+    })
+    return res.json(names)
+ } catch(err){
+    console.log(err)
+    return res.json(err)
+ } 
+})
+
 //* Create categories
 router.post('/', async(req,res) => {
     const {name, description} = req.body
