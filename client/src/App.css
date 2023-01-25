@@ -227,3 +227,33 @@ padding: 5px;
 text-transform: capitalize;
 }
 
+#transaction-page{
+width: calc(70%);
+height: 82vh;
+overflow-y: scroll;
+/* border: 1px solid black; */
+}
+
+
+#transaction-page-header{
+  border-top: 1px solid rgba(0, 0, 0, 0.463);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.463);
+  margin-top: 2px;
+  display: flex;
+  gap: 75px;
+  padding: 20px;
+  font-size: 1.1em;
+  font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.112);
+}
+
+#transaction-container{
+
+}
+
+.transaction-card {
+display: flex;
+gap: 75px;
+padding: 10px 20px;
+border-bottom: 1px solid rgba(0, 0, 0, 0.463);
+}

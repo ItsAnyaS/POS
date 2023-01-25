@@ -35,8 +35,6 @@ router.get('/:uuid', async(req, res)=> {
         if (user){
             let session =  await Session.findOne({where: {userId: user.id}, order: [ [ 'updatedAt', 'DESC' ]]})
             let transactions = await session.getTransactions()
-            // let arr = await transactions.map(async(trans)=> {Item.findAll({where: {transactionId:}})})
-            // console.log(arr)
             return res.json(transactions)
         }
     }catch(err){
@@ -45,5 +43,11 @@ router.get('/:uuid', async(req, res)=> {
     }
 })
 
+
+router.delete('/:id', async(req, res)=> {
+    let transaction = await Transaction.findOne({where: {id: req.params.id}})
+    Transaction.destroy({where: {id: transaction.id}})
+    return res.json(transaction)
+})
 
 module.exports = router
