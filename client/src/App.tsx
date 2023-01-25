@@ -7,6 +7,7 @@ import CategorySelectionBar from './components/CategorySelectionBar';
 import ItemsByCategory from './components/ItemsByCategory';
 import TransactionPage from './components/TransactionPage';
 import TipPopUp from './components/TipPopUp';
+import CheckoutPage from './components/CheckoutPage';
 import {useEffect, useState} from 'react'
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 interface ItemObj {
@@ -20,7 +21,8 @@ interface ItemObj {
 function App() {
 
 const [cart, setCart] = useState<ItemObj[]>([])
-const [showTipScreen, setShowTipScreen]= useState<boolean>(true)
+const [showTipScreen, setShowTipScreen]= useState<boolean>(false)
+const [showCheckoutScreen, setShowCheckoutScreen] = useState<boolean>(true)
 
 const getCartFromLocalStorage = () => {
   let lsCart = window.localStorage.getItem('cart')
@@ -31,11 +33,15 @@ const getCartFromLocalStorage = () => {
   }
 }
 
+const submitTip = (tipAmount: number) => {
+console.log(tipAmount)
+setShowTipScreen(false)
+}
+
   useEffect(()=> {
     getCartFromLocalStorage()
 
   }, [])
-console.log(cart)
   return (
     <div className="App">
       <Router>
@@ -47,7 +53,8 @@ console.log(cart)
           <Route path='/categories/:id' element={ <ItemsByCategory setCart={setCart}/>}/>
           <Route path='/transactions' element={ <TransactionPage/> }/> 
         </Routes>
-       {showTipScreen && <TipPopUp cart={cart} setShowTipScreen={setShowTipScreen}/>}
+       {showTipScreen && <TipPopUp cart={cart} setShowTipScreen={setShowTipScreen} submitTip={submitTip}/>}
+       {showCheckoutScreen && <CheckoutPage/>}
     </Router>
     </div>
   )
