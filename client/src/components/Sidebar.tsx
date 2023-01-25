@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState, Dispatch, SetStateAction  } from 'react'
 import {FiTrash2} from 'react-icons/fi'
+import TipPopUp from "./TipPopUp";
 
 //! Need to change tax rate with each user
 const taxRate = 0.10
@@ -81,6 +82,7 @@ useEffect(()=> {
           <p>$0.00</p>
         </div>
         <div id="checkout-btn" className='hover'><h3>Checkout</h3><p>${total/100}</p></div>
+        <TipPopUp/>
       </section>
     )
 }
