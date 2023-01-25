@@ -47,7 +47,7 @@ return(
                 transactions.map(transaction => {
 return (
                     <div className="transaction-card">
-                        <p>${transaction.total_cost}</p>
+                        <p>${((transaction.total_cost)/100).toFixed(2)}</p>
                         <p>{new Date(transaction.updatedAt).toLocaleDateString('en-us', { weekday: "short", year: "numeric", month: "short", day: "numeric" })}</p>
                         <p>{transaction.number_of_items}</p>                
                     </div>

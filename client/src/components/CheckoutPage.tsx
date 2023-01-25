@@ -48,11 +48,50 @@ const calculateCartTotal = () => {
     return cartTotal
 }   
 
-const handleCheckout = () => {
-  setShowCheckoutScreen(false)
-  setCart([])
-  window.localStorage.removeItem('cart')
+const calculateTax =() => {
+  //! Tax rate needs to change based on user
+  let taxRate = 0.10
+  let tax = 0
+  cart.forEach((item) => {
+    // console.log(item.price* taxRate)
+    tax += item.price * taxRate
+  })
+  // console.log("tax pre100", tax)
+  return tax
 }
+
+const createTransaction =async() => {
+//!need to change session id
+  let tip = (finalTipAmount*100).toFixed()
+  let tax = calculateTax()
+  let total = calculateCartTotal() + tax + parseInt(tip)
+  let req = await fetch('http://localhost:3000/transactions', {
+      method: 'POST',
+      headers: {"Content-type": "application/json"},
+      body: JSON.stringify(
+          {number_of_items: cart.length,
+            items: cart,
+            total_cost: total,
+            total_tax: tax,
+            total_tip: tip,
+            sessionId: 2
+          })
+      })
+      let res = await req.json()
+      if (req.ok){
+        console.log(res)
+      }
+  // console.log('tax', tax)
+  // console.log('tip',tip)
+  // console.log('subtotal', calculateCartTotal())
+  // console.log('total', total)
+    }
+    const handleCheckout = () => {
+      createTransaction()
+      setShowCheckoutScreen(false)
+      setCart([])
+      window.localStorage.removeItem('cart')
+    }
 
 useKey('Enter', handleCheckout)
 
