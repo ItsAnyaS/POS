@@ -8,7 +8,7 @@ import ItemsByCategory from './components/ItemsByCategory';
 import TransactionPage from './components/TransactionPage';
 import TipPopUp from './components/TipPopUp';
 import CheckoutPage from './components/CheckoutPage';
-import {useEffect, useState, } from 'react'
+import {useEffect, useState, useRef } from 'react'
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 interface ItemObj {
   id: number,
@@ -18,12 +18,14 @@ interface ItemObj {
   categoryId: number
 }
 
+
 function App() {
 
 const [cart, setCart] = useState<ItemObj[]>([])
 const [showTipScreen, setShowTipScreen]= useState<boolean>(false)
 const [showCheckoutScreen, setShowCheckoutScreen] = useState<boolean>(false)
 const [finalTipAmount, setFinalTipAmount] = useState<number>(0)
+
 
 const getCartFromLocalStorage = () => {
   let lsCart = window.localStorage.getItem('cart')

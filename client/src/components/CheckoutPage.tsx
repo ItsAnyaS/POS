@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, Dispatch, SetStateAction} from "react";
 import {BsChevronUp} from 'react-icons/bs'
+import { RxCross2 } from 'react-icons/rx'
 
 
 interface ItemObj {
@@ -93,6 +94,7 @@ useKey('Enter', handleCheckout)
 return (
     <div id="checkout-page">
         <div id="checkout-page-container">
+        <RxCross2 id="tip-pop-up-close-btn" onClick={()=> {setShowCheckoutScreen(false)}}/>
             <div className="tap-container">
                 <BsChevronUp id="tap-chevron"/>
                 <h4>TAP</h4>
