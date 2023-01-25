@@ -67,7 +67,7 @@ useEffect(()=> {
           <div className="cart-item" key={`cart${item?.id}`}>
             <h4>{item?.name}</h4>
             <FiTrash2 onClick={()=> {removeItemFromCart(item)}}/>
-            <p>${item?.price}</p>
+            <p>${(item.price/100).toFixed(2)}</p>
           </div>
               )
             })
@@ -76,7 +76,7 @@ useEffect(()=> {
         </div>
         <div id="tax">
           <h4>Tax</h4>
-          <p>${tax}</p>
+          <p>${(tax/100).toFixed(2)}</p>
         </div>
         <div id="discount">
           <h4>Discount</h4>

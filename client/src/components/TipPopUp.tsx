@@ -34,15 +34,15 @@ return(
             <div className="tip-option-container">
                 <div className="tip-option-card">
                     <h4>15%</h4>
-                    <p>${(getCartTotal()*1.15).toFixed(2)}</p>
+                    <p>${(getCartTotal()*0.15).toFixed(2)}</p>
                 </div>
                 <div className="tip-option-card">
                     <h4>18%</h4>
-                    <p>${(getCartTotal()*1.18).toFixed(2)}</p>
+                    <p>${(getCartTotal()*0.18).toFixed(2)}</p>
                 </div>
                 <div className="tip-option-card">
                     <h4>20%</h4>
-                    <p>${(getCartTotal()*1.20).toFixed(2)}</p>
+                    <p>${(getCartTotal()*0.20).toFixed(2)}</p>
                 </div>
             </div>
             <div className="other-tip-option">
