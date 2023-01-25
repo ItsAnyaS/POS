@@ -79,18 +79,13 @@ const createTransaction =async() => {
       })
       let res = await req.json()
       if (req.ok){
-        console.log(res)
+        setShowCheckoutScreen(false)
+        setCart([])
+        window.localStorage.removeItem('cart')
       }
-  // console.log('tax', tax)
-  // console.log('tip',tip)
-  // console.log('subtotal', calculateCartTotal())
-  // console.log('total', total)
     }
     const handleCheckout = () => {
       createTransaction()
-      setShowCheckoutScreen(false)
-      setCart([])
-      window.localStorage.removeItem('cart')
     }
 
 useKey('Enter', handleCheckout)
@@ -103,7 +98,7 @@ return (
                 <h4>TAP</h4>
             </div>
             <div className="checkout-total-container">
-            <h1 className="checkout-page-total">${(calculateCartTotal()/100).toFixed(2)}</h1>
+            <h1 className="checkout-page-total">${((calculateCartTotal() + calculateTax())/100).toFixed(2)}</h1>
             <p>+ Tip ${finalTipAmount.toFixed(2)}</p>
             </div>
             <h1 className="checkout-page-instructions">Insert, Tap, or Swipe</h1>

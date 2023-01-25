@@ -34,7 +34,7 @@ router.get('/:uuid', async(req, res)=> {
         let user = await User.findOne({uuid: req.params.uuid})
         if (user){
             let session =  await Session.findOne({where: {userId: user.id}, order: [ [ 'updatedAt', 'DESC' ]]})
-            let transactions = await session.getTransactions()
+            let transactions = await session.getTransactions({ order: [ [ 'updatedAt', 'DESC' ]]})
             return res.json(transactions)
         }
     }catch(err){

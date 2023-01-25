@@ -27,7 +27,6 @@ const TransactionPage = () => {
     const getTransactions = async() => {
         let req = await fetch('http://localhost:3000/transactions/b9e56fe2-dced-4e6a-bdfa-facbe01a0bca')
         let res = await req.json()
-        console.log(res)
         setTransactions(res)
     }
 

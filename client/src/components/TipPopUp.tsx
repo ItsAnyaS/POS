@@ -22,11 +22,15 @@ interface ItemObj {
 const TipPopUp: React.FC<Props> = ({setShowTipScreen, cart, submitTip}) => {
 
     const getCartTotal =() => {
+        //!change tax rate
+        let tax = 0
+        let taxRate = 0.10
         let total = 0
         cart.forEach(item => {
             total += item.price
+            tax += item.price * taxRate
         })
-        return total = total/100
+        return total = (total+ tax)/100
     }
 
 
