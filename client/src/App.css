@@ -331,7 +331,19 @@ left: 0;
 width: 100%;
 height: 100%;
 background-color: dodgerblue;
+/* animation: checkout-in 500ms; */
 }
+
+@keyframes checkout-in {
+  0% {
+    top: -100%;
+  }
+
+  100% {
+    top: 0;
+  }
+}
+
 
 #checkout-page-container {
 color: white;
@@ -409,6 +421,13 @@ font-size: 0.6em;
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: card-ani 1s ;
+}
+
+@keyframes card-ani {
+  0% {
+    bottom: -150px;
+  }
 }
 
 .checkout-page-card-slot {
