@@ -375,6 +375,18 @@ font-size: 0.6em;
 
 }
 
+.checkout-total-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.checkout-total-container p {
+  font-size: 1.2em;
+  /* margin-bottom: 1px; */
+  color: rgba(255, 255, 255, 0.678);
+}
+
 .checkout-page-shading-box{
   width: 100%;
   background-color: rgb(18, 74, 131);
