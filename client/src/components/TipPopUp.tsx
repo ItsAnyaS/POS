@@ -1,12 +1,16 @@
-import React from "react";
+import React, {Dispatch, SetStateAction} from "react";
 import { RxCross2 } from 'react-icons/rx'
 
-const TipPopUp = () => {
+interface Props {
+    setShowTipScreen: Dispatch<SetStateAction<boolean>>;
+}
+
+const TipPopUp: React.FC<Props> = ({setShowTipScreen}) => {
 return(
     <div id="tip-pop-up">
-        <RxCross2 id="tip-pop-up-close-btn"/>
         <div id="tip-pop-up-container">
-            <h1>$10.13</h1>
+        <RxCross2 id="tip-pop-up-close-btn" onClick={()=> {setShowTipScreen(false)}}/>
+            <h1>$10.12</h1>
             <h2>Add a tip?</h2>
             <div className="tip-option-container">
                 <div className="tip-option-card">

@@ -20,6 +20,7 @@ interface ItemObj {
 function App() {
 
 const [cart, setCart] = useState<ItemObj[]>([])
+const [showTipScreen, setShowTipScreen]= useState<boolean>(true)
 
 const getCartFromLocalStorage = () => {
   let lsCart = window.localStorage.getItem('cart')
@@ -46,7 +47,7 @@ const getCartFromLocalStorage = () => {
           <Route path='/categories/:id' element={ <ItemsByCategory setCart={setCart}/>}/>
           <Route path='/transactions' element={ <TransactionPage/> }/> 
         </Routes>
-        <TipPopUp/>
+       {showTipScreen && <TipPopUp setShowTipScreen={setShowTipScreen}/>}
     </Router>
     </div>
   )

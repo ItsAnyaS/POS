@@ -82,7 +82,7 @@ useEffect(()=> {
           <p>$0.00</p>
         </div>
         <div id="checkout-btn" className='hover'><h3>Checkout</h3><p>${total/100}</p></div>
-        <TipPopUp/>
+        
       </section>
     )
 }
