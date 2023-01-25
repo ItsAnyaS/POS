@@ -9,6 +9,7 @@ const taxRate = 0.10
 interface Props {
     cart: ItemObj[],
     setCart: Dispatch<SetStateAction<ItemObj[]>>;
+    setShowTipScreen: Dispatch<SetStateAction<boolean>>;
 }
 
 interface ItemObj {
@@ -19,7 +20,7 @@ interface ItemObj {
     categoryId: number
 }
 
-const Sidebar: React.FC<Props> = ({cart, setCart}) => {
+const Sidebar: React.FC<Props> = ({cart, setCart, setShowTipScreen}) => {
 
 
 const [total, setTotal] = useState(0)
@@ -81,8 +82,7 @@ useEffect(()=> {
           <h4>Discount</h4>
           <p>$0.00</p>
         </div>
-        <div id="checkout-btn" className='hover'><h3>Checkout</h3><p>${total/100}</p></div>
-        
+        <div id="checkout-btn" className='hover' onClick={()=> {if (total != 0) {setShowTipScreen(true)}}}><h3>Checkout</h3><p>${total/100}</p></div>
       </section>
     )
 }

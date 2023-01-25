@@ -35,19 +35,19 @@ const getCartFromLocalStorage = () => {
     getCartFromLocalStorage()
 
   }, [])
-
+console.log(cart)
   return (
     <div className="App">
       <Router>
         <Navbar/>
         <CategorySelectionBar/>
-        <Sidebar cart={cart} setCart={setCart}/>
+        <Sidebar cart={cart} setCart={setCart} setShowTipScreen={setShowTipScreen}/>
         <Routes>
           <Route path='/' element={<Main setCart={setCart}/>}/>
           <Route path='/categories/:id' element={ <ItemsByCategory setCart={setCart}/>}/>
           <Route path='/transactions' element={ <TransactionPage/> }/> 
         </Routes>
-       {showTipScreen && <TipPopUp setShowTipScreen={setShowTipScreen}/>}
+       {showTipScreen && <TipPopUp cart={cart} setShowTipScreen={setShowTipScreen}/>}
     </Router>
     </div>
   )
