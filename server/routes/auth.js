@@ -8,11 +8,12 @@ const { User } = require('../models')
 
 router.post('/login', async(req,res)=> {
     let {username, password } = req.body
+    // console.log(process.env.JWT_SECRET_KEY)
     try{
         let user = await  User.findOne({where: {username}})
         if (user){
             if (user.password === password){
-                let token = jwt.sign({ exp: Math.floor(Date.now() / 1000) + (60 * 60), data: user.uuid}, 'secret');
+                let token = jwt.sign({ exp: Math.floor(Date.now() / 1000) + (60 * 60), data: user.uuid}, process.env.JWT_SECRET_KEY);
                 return res.json({
                     authToken: token,
                     country: user.country,
@@ -35,8 +36,9 @@ router.post('/login', async(req,res)=> {
 
 router.get('/:token', async(req, res)=> {
     let token = req.params.token
+    // console.log(process.env.JWT_SECRET_KEY)
     try{
-        let decodedToken = jwt.verify(token, 'secret')
+        let decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY)
         if (!decodedToken){
             return res.json({message: "Not valid user"})
         }

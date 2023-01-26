@@ -1,5 +1,6 @@
 const express = require('express')
 const jwt = require('jsonwebtoken');
+// const env = require('dotenv')
 const { sequelize } = require('./models')
 const cors = require('cors')
 const app = express()
