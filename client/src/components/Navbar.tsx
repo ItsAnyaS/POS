@@ -1,12 +1,39 @@
 import React from "react"
 import { Nav } from "react-bootstrap"
 import { GrTransaction } from 'react-icons/gr'
+import { HiHome} from 'react-icons/hi'
 import { NavLink } from "react-router-dom"
+import Cookies from 'js-cookie'
+import { useEffect, useState } from "react"
 const Navbar = () => {
+
+const [usable, setUsable] = useState<boolean>(true)
+
+const validateUser = async() => {
+let user = Cookies.get('auth-token')
+      if (user){
+            let req = await fetch(`http://localhost:3000/auth/${user}`)
+            let res = await req.json()
+            if (res.message === 'valid user'){
+            console.log('logged in')
+            setUsable(true)
+            }else {
+            console.log('not logged in')
+            setUsable(false)
+            }
+      }else {
+            setUsable(false)
+      }
+}
+
+useEffect(()=> {
+      validateUser()
+},[])
+      
 return ( 
 <nav id="navbar">
-      <div className="nav-item">1</div>
-      <div className="nav-item"><NavLink to='/transactions'><GrTransaction/></NavLink></div>
+      <div className="nav-item"><NavLink style={{"color": "black"}} to={usable? '/': '/login'}><HiHome/></NavLink></div>
+      <div className="nav-item"><NavLink to={usable?'/transactions': '/login'}><GrTransaction/></NavLink></div>
       <div className="nav-item">3</div>
 </nav>
 )

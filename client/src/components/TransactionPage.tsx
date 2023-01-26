@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import Cookies from 'js-cookie'
 
 interface ItemObj {
     id: number,
@@ -30,8 +31,25 @@ const TransactionPage = () => {
         setTransactions(res)
     }
 
+    const getUser = async() => {
+        let user = Cookies.get('auth-token')
+        if (user){
+          let req = await fetch(`http://localhost:3000/auth/${user}`)
+          let res = await req.json()
+          if (res.message === 'valid user'){
+            console.log('logged in')
+            getTransactions()
+          }else {
+            console.log('not logged in')
+          }
+        }else {
+           
+        }
+      }
+      
+
     useEffect(()=> {
-        getTransactions()
+        getUser()
     }, [])
 
 return(

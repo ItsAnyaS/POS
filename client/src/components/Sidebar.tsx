@@ -2,7 +2,8 @@ import React from "react";
 import { useEffect, useState, Dispatch, SetStateAction  } from 'react'
 import {FiTrash2} from 'react-icons/fi'
 import TipPopUp from "./TipPopUp";
-
+import Cookies from 'js-cookie'
+import { useNavigate } from "react-router-dom";
 //! Need to change tax rate with each user
 const taxRate = 0.10
 
@@ -25,6 +26,7 @@ const Sidebar: React.FC<Props> = ({cart, setCart, setShowTipScreen}) => {
 
 const [total, setTotal] = useState(0)
 const [tax, setTax] = useState(0)
+const navigate = useNavigate()
 
 const calculateTotal = () => {
   let tempTotal = 0
@@ -49,6 +51,24 @@ let filteredCart = cart.filter(item => {
 setCart(filteredCart)
 window.localStorage.setItem('cart', JSON.stringify(filteredCart))
 console.log(filteredCart)
+}
+
+const validateUser = async() => {
+  let user = Cookies.get('auth-token')
+  if (user){
+    let req = await fetch(`http://localhost:3000/auth/${user}`)
+    let res = await req.json()
+    if (res.message === 'valid user'){
+      console.log('logged in')
+
+    }else {
+      console.log('not logged in')
+      navigate('/')
+    }
+  }else { 
+    navigate('/')
+     
+  }
 }
 
 
