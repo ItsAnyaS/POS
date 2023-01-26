@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useState, useContext, Dispatch, SetStateAction } from "react";
-import { UserContext } from '../App'
+import { useState, Dispatch, SetStateAction } from "react";
+import { NavLink } from "react-router-dom";
+
 import Cookies from 'js-cookie'
 
 interface UserCredentialsObj {
@@ -14,8 +15,8 @@ interface Props {
 }
 
 const Login: React.FC<Props> = ({setIsLoggedIn}) => {
-    // const {setGlobalUser} = useContext(UserContext)
     const [userCredentials, setUserCredentials] = useState<UserCredentialsObj>({username: '', password: ''})
+    const navigate = useNavigate()
 
     const loginUser = async() => {
         let req = await fetch('http://localhost:3000/auth/login', {
@@ -31,9 +32,7 @@ const Login: React.FC<Props> = ({setIsLoggedIn}) => {
             console.log('try again')
         }else if (res.authToken){
             console.log('logged in')
-            // console.log( res)
             setIsLoggedIn(true)
-            // console.log(res.authToken)
             Cookies.set('auth-token', res.authToken)
         }
     }
@@ -50,7 +49,6 @@ const Login: React.FC<Props> = ({setIsLoggedIn}) => {
     }
 
 
-// console.log(userCredentials)
     return (
         <div id="login-page">
             <div id="login-container">
@@ -62,9 +60,15 @@ const Login: React.FC<Props> = ({setIsLoggedIn}) => {
                     </fieldset>
                     <fieldset>
                         <legend>Password</legend>
-                        <input onChange={(e)=> {handleChange(e.target.value, e.target.name)}} type="text" required name="password" />
+                        <input onChange={(e)=> {handleChange(e.target.value, e.target.name)}} type="password" required name="password" />
                     </fieldset>
                     <button>LOGIN</button>
+                <div className="form-seperator">
+                    <div className="left-line"></div>
+                    <p>or</p>
+                    <div className="right-line"></div>
+                </div>
+                <div className="create-account" onClick={()=> {navigate('/register')}}>Create a account</div>
                 </form>
             </div>
         </div>
