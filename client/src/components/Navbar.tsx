@@ -1,6 +1,7 @@
 import React from "react"
 import { Nav } from "react-bootstrap"
 import { GrTransaction } from 'react-icons/gr'
+import {AiOutlineHome } from 'react-icons/ai'
 import { HiHome} from 'react-icons/hi'
 import { NavLink } from "react-router-dom"
 import Cookies from 'js-cookie'
@@ -32,7 +33,7 @@ useEffect(()=> {
       
 return ( 
 <nav id="navbar">
-      <div className="nav-item"><NavLink style={{"color": "black"}} to={usable? '/': '/login'}><HiHome/></NavLink></div>
+      <div className="nav-item"><NavLink style={{"color": "black"}} to={usable? '/': '/login'}><AiOutlineHome/></NavLink></div>
       <div className="nav-item"><NavLink to={usable?'/transactions': '/login'}><GrTransaction/></NavLink></div>
       <div className="nav-item">3</div>
 </nav>
