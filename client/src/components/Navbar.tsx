@@ -1,11 +1,11 @@
 import React from "react"
-import { Nav } from "react-bootstrap"
 import { GrTransaction } from 'react-icons/gr'
 import {AiOutlineHome } from 'react-icons/ai'
-import { HiHome} from 'react-icons/hi'
+import { GiHamburgerMenu} from 'react-icons/gi'
 import { NavLink } from "react-router-dom"
 import Cookies from 'js-cookie'
 import { useEffect, useState } from "react"
+
 const Navbar = () => {
 
 const [usable, setUsable] = useState<boolean>(true)
@@ -35,7 +35,7 @@ return (
 <nav id="navbar">
       <div className="nav-item"><NavLink style={{"color": "black"}} to={usable? '/': '/login'}><AiOutlineHome/></NavLink></div>
       <div className="nav-item"><NavLink to={usable?'/transactions': '/login'}><GrTransaction/></NavLink></div>
-      <div className="nav-item">3</div>
+      <div className="nav-item"><GiHamburgerMenu/></div>
 </nav>
 )
 }
