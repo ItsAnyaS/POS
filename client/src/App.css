@@ -157,7 +157,6 @@ align-items: center;
 }
 
 #category-menu-icon {
-margin-left: auto;
 font-size: 1.3em;
 }
 
@@ -608,18 +607,22 @@ color: rgba(0, 0, 0, 0.754);
 
 .custom-category-menu-drop-down {
 position: absolute;
-left: calc(65.5% - 50px);
-top: 35px;
+left: -85px;
+top: 25px;
 z-index: 100;
 background-color: white;
 border-radius: 5px;
 border: 1px solid rgba(0, 0, 0, 0.282);
 font-size: 0.9em;
 }
+.category-dd-container{
+  margin-left: auto;
+  position: relative;
+}
 
 .custom-category-menu-drop-down div {
   /* padding: 10px; */
-  padding: 5px 10px;
+  padding: 10px 20px;
   /* width: 100%; */
 }
 

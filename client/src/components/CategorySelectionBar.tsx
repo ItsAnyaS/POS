@@ -52,11 +52,13 @@ const CategorySelectionBar: React.FC<Props> = ({setIsShowingCustomCatMenu,isShow
                     )
                 })
             }
+            <div className="category-dd-container">
             <BsThreeDots id="category-menu-icon" onClick={(e)=> {e.stopPropagation();setIsShowingCustomCatMenu(true)}}/>
            { isShowingCustomCatMenu && <div className="custom-category-menu-drop-down">
                 <div className="dd-add-new-item" onClick={()=> {setIsShowingCustomCatMenu(false); setIsShowingModel(true)}}>Add Item</div>
                 <div className="dd-logout" onClick={()=> {logoutUser()}}>LOGOUT</div>
             </div>}
+            </div>
            { isShowingModel && <AddItemModel categories={categories} setIsShowingModel={setIsShowingModel}/>}
       </section>
     )
