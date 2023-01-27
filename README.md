@@ -6,3 +6,5 @@ This app can be launched on your devices by first running "npm install".  After 
 
 
 - add userId column to transactions
+
+- all transactions view on transactions page
