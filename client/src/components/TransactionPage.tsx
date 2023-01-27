@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import Cookies from 'js-cookie'
+const authToken = Cookies.get('auth-token')
 
 interface ItemObj {
     id: number,
@@ -26,7 +27,7 @@ const TransactionPage = () => {
     const [transactions, setTransactions] = useState<TransactionObj[]>([])
 
     const getTransactions = async() => {
-        let req = await fetch('/transactions/b9e56fe2-dced-4e6a-bdfa-facbe01a0bca')
+        let req = await fetch(`/transactions/${authToken}`)
         let res = await req.json()
         setTransactions(res)
     }

@@ -4,15 +4,14 @@ const router = express.Router()
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const myPlaintextPassword = 's0/\/\P4$$w0rD';
-const { User } = require('../models')
+const { User, Session } = require('../models')
 
 
 //* Create token with 24 expiry
-const signToken = (user) => {
+ const signToken = (user) => {
     return jwt.sign({ exp: Math.floor(Date.now() / 1000) + (60 * 60), data: user.uuid}, process.env.JWT_SECRET_KEY);
 }
-
-const decodeToken = (token) => {
+ const decodeToken = (token) => {
     return jwt.verify(token, process.env.JWT_SECRET_KEY)
 }
 
@@ -23,7 +22,7 @@ const decodeToken = (token) => {
 //     });
 // }
 
-//* Sign in
+//* Sign in (this triggers the creation of a session)
 
 router.post('/login', async(req,res)=> {
     let {username, password } = req.body
@@ -33,6 +32,9 @@ router.post('/login', async(req,res)=> {
         if (user){
             let decryptedPassword = await bcrypt.compare(password, user.password)
             if (decryptedPassword){
+                    let session = await Session.create({number_of_transactions: 0, total_tips: 0, total_tax: 0, number_of_items_sold: 0, total_net: 0, userId: user.id})
+                    // return res.json(session)
+                    console.log(session)
                 let token = signToken(user)
                 return res.json({
                     authToken: token,

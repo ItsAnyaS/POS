@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, Dispatch, SetStateAction} from "react";
 import {BsChevronUp} from 'react-icons/bs'
 import { RxCross2 } from 'react-icons/rx'
+import Cookies from 'js-cookie'
 let taxRate = 0
 let data = window.localStorage.getItem('taxRate')
 if (data){
@@ -69,6 +70,7 @@ const createTransaction =async() => {
   let tip = (finalTipAmount*100).toFixed()
   let tax = calculateTax()
   let total = calculateCartTotal() + tax + parseInt(tip)
+  let authToken = Cookies.get('auth-token')
   let req = await fetch('/transactions', {
       method: 'POST',
       headers: {"Content-type": "application/json"},
@@ -77,15 +79,29 @@ const createTransaction =async() => {
             items: cart,
             total_cost: total,
             total_tax: tax,
-            total_tip: tip,
-            sessionId: 2
+            total_tip: parseInt(tip),
+            authToken: authToken
           })
       })
-      // let res = await req.json()
       if (req.ok){
+
+
+        req = await fetch(`/sessions/update/${authToken}`, {
+          method: "PATCH",
+          headers: {"Content-type": "application/json"},
+          body: JSON.stringify({
+            number_of_transactions: 1,
+            number_of_items_sold: cart.length,
+            total_net: total,
+            total_tax: tax,
+            total_tips: parseInt(tip),
+          })
+        })
+        // let res = await req.json()
         setShowCheckoutScreen(false)
         setCart([])
         window.localStorage.removeItem('cart')
+
       }
     }
     const handleCheckout = () => {
