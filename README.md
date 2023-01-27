@@ -3,10 +3,5 @@ This app can be launched on your devices by first running "npm install".  After 
 
 ## Agenda
 
-- Add registration functionality
-
-[-] Encrypt passwords with bcrypt
-
-[-] hide jwt secret key
 
 - add keypad for custom amount items (will need name as well)
