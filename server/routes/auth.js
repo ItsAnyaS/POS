@@ -83,9 +83,13 @@ router.post('/signup', async(req,res) => {
         if (!userExists){
         let encryptedPassword = await bcrypt.hash(password, 10)
         let user = await User.create({username, password: encryptedPassword, country, state})
-        return res.json(user)
+            if (user){
+                return res.json({message: 'account successfully created', authToken: signToken(user)})
+            }else {
+                return res.json({message: 'Bad request'}).status(400)
+            }
         }else {
-            return res.json({message: "A user with that name already exists"})
+            return res.json({message: "A user with that name already exists"}).status(400)
         }
     }catch(err){
         console.log(err)

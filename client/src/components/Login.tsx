@@ -12,9 +12,10 @@ interface UserCredentialsObj {
 
 interface Props {
     setIsLoggedIn: Dispatch<SetStateAction<boolean>>
+    setIsSigningUp: Dispatch<SetStateAction<boolean>>
 }
 
-const Login: React.FC<Props> = ({setIsLoggedIn}) => {
+const Login: React.FC<Props> = ({setIsLoggedIn, setIsSigningUp}) => {
     const [userCredentials, setUserCredentials] = useState<UserCredentialsObj>({username: '', password: ''})
     const navigate = useNavigate()
 
@@ -68,7 +69,7 @@ const Login: React.FC<Props> = ({setIsLoggedIn}) => {
                     <p>or</p>
                     <div className="right-line"></div>
                 </div>
-                <div className="create-account" onClick={()=> {navigate('/register')}}>Create a account</div>
+                <div className="create-account" onClick={()=> {setIsSigningUp(true)}}>Create a account</div>
                 </form>
             </div>
         </div>

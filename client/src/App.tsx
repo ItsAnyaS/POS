@@ -8,6 +8,7 @@ import ItemsByCategory from './components/ItemsByCategory';
 import TransactionPage from './components/TransactionPage';
 import TipPopUp from './components/TipPopUp';
 import CheckoutPage from './components/CheckoutPage';
+import SignUp from './components/SignUp';
 import {useEffect, useState, createContext, useMemo } from 'react'
 import {BrowserRouter as Router, Route, Routes, redirect } from 'react-router-dom'
 import Cookies from 'js-cookie';
@@ -36,6 +37,7 @@ const [finalTipAmount, setFinalTipAmount] = useState<number>(0)
 const [globalUser, setGlobalUser] = useState<UserObj>({authToken: ''})
 const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true)
 const [isShowingCustomCatMenu, setIsShowingCustomCatMenu] = useState<boolean>(false)
+const [isSigningUp, setIsSigningUp] = useState<boolean>(false)
 // const navigate = useNavigate()
 
 
@@ -89,7 +91,8 @@ const value = useMemo(() => ({ globalUser, setGlobalUser }), [globalUser, setGlo
     <div className="App" onClick={()=> {setIsShowingCustomCatMenu(false)}}>
       <UserContext.Provider value={value}>
       <Router>
-        {!isLoggedIn && <Login setIsLoggedIn={setIsLoggedIn}/>}
+        {!isLoggedIn && isSigningUp && <SignUp setIsLoggedIn={setIsLoggedIn} setIsSigningUp={setIsSigningUp}/>}
+        {!isLoggedIn && !isSigningUp && <Login setIsSigningUp={setIsSigningUp} setIsLoggedIn={setIsLoggedIn}/>}
        { isLoggedIn && <Navbar/>}
        { isLoggedIn && <CategorySelectionBar setIsLoggedIn={setIsLoggedIn} isShowingCustomCatMenu={isShowingCustomCatMenu} setIsShowingCustomCatMenu={setIsShowingCustomCatMenu}/>}
        { isLoggedIn && <Sidebar cart={cart} setCart={setCart} setShowTipScreen={setShowTipScreen}/>}
@@ -97,7 +100,7 @@ const value = useMemo(() => ({ globalUser, setGlobalUser }), [globalUser, setGlo
           { isLoggedIn && <Route path='/' element={<Main setCart={setCart}/>}/>}
           {isLoggedIn &&  <Route path='/categories/:id' element={ <ItemsByCategory setCart={setCart}/>}/>}
          {isLoggedIn && <Route path='/transactions' element={ <TransactionPage/> }/> }
-          <Route path='login' element={<Login setIsLoggedIn={setIsLoggedIn}/>}/>
+          <Route path='login' element={<Login setIsSigningUp={setIsSigningUp} setIsLoggedIn={setIsLoggedIn}/>}/>
         </Routes>
        {showTipScreen && <TipPopUp cart={cart} setShowTipScreen={setShowTipScreen} submitTip={submitTip}/>}
        {showCheckoutScreen && <CheckoutPage  setCart={setCart} cart={cart} finalTipAmount={finalTipAmount} setShowCheckoutScreen={setShowCheckoutScreen} />}
