@@ -16,5 +16,67 @@
 background-color: white;
 width: 500px;
 height: 500px;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 20px;
+}
+
+#sign-up-container h1 {
+    font-size: 3em;
+}
+
+#sign-up-form {
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 80%;
+gap: 10px;
+}
+
+#sign-up-form fieldset {
+    border-radius: 5px ;
+    border: 1px solid black;
+    height: 30px;
+    width: 325px;
+}
+
+#sign-up-form legend {
+    font-size: 0.9em;
+}
+
+
+#sign-up-form input {
+    width: 325px;
+    height: 10px;
+    border: none;
+    padding: 2px 0px;
+}
+
+#sign-up-form select {
+    padding: 0px 10px;
+}
+
+#sign-up-form button {
+    width: 350px;
+    padding: 5px 10px;
+    font-size: 2em;
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    font-weight: 600;
+}
+
+#sign-up-form button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    transition: 100ms;
+}
+
+#sign-up-container a{
+text-decoration: underline;
+cursor: pointer;
+}
+#sign-up-container p{
 
 }

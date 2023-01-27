@@ -77,6 +77,7 @@ return (
                 </fieldset>
                 <button>Sign up</button>
             </form>
+            <p>Already have an account? <a onClick={()=> {setIsSigningUp(false)}}>Login here</a></p>
         </div>
     </div>
 )
