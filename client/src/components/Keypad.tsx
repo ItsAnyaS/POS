@@ -1,7 +1,20 @@
-import React, {useState} from "react";
+import React, {Dispatch, SetStateAction, useState} from "react";
 import '../styles/Keypad.css'
+import { BsArrowReturnRight} from 'react-icons/bs'
 
-const Keypad = () => {
+interface ItemObj {
+    id: number,
+    name: string,
+    photoLink: string,
+    price: number,
+    categoryId: number
+}
+
+interface Props {
+setCart: Dispatch<SetStateAction<ItemObj[]>>
+}
+
+const Keypad: React.FC<Props> = ({setCart}) => {
 
     const [customAmountToBeAdded, setCustomAmountToBeAdded] = useState<string>('000')
 
@@ -12,9 +25,6 @@ const Keypad = () => {
         }
         let wholeValue = arr.join('') + number.toString()
         let sp = wholeValue.split('')
-        let length = sp.length-2
-        console.log(length)
-        console.log(sp)
         if (!sp.includes('.')){
             sp.splice(1,0, '.')
         }else {
@@ -26,7 +36,17 @@ const Keypad = () => {
     }
 
 
-    // console.log(customAmountToBeAdded)
+    const setLocalCart = (item: ItemObj) => {
+
+        let lsCart = window.localStorage.getItem('cart')
+        if (lsCart){
+            let parsedCart = JSON.parse(lsCart)
+            let newCart = [...parsedCart, item]
+            window.localStorage.setItem('cart', JSON.stringify(newCart))
+        }
+        setCart(prev=> [...prev, item])
+    }
+
 return (
     <div id="keypad">
         <div id="keypad-container">
@@ -44,7 +64,7 @@ return (
                     <div className="keypad-number-card" onClick={()=> {appendNumberToAmount(9)}}><p>9</p></div>
                     <div className="keypad-number-card" onClick={()=> {setCustomAmountToBeAdded('0')}}><p>C</p></div>
                     <div className="keypad-number-card" onClick={()=> {appendNumberToAmount(0)}}><p>0</p></div>
-                    <div className="keypad-number-card"><p>+</p></div>
+                    <div className="keypad-number-card" onClick={()=> {setLocalCart({id: 1, price: parseFloat(customAmountToBeAdded)*100, name: 'custom item', photoLink: 'https://static.thenounproject.com/png/1554489-200.png', categoryId: 1})}}><p><BsArrowReturnRight/></p></div>
                 </div>
             </form>
         </div>

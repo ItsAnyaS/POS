@@ -3,7 +3,9 @@ import { useEffect, useState, Dispatch, SetStateAction  } from 'react'
 import {FiTrash2} from 'react-icons/fi'
 let taxRate = 0
 let data = window.localStorage.getItem('taxRate')
-taxRate = parseFloat(JSON.parse(data || "").tax)/100
+if (data){
+  taxRate = parseFloat(JSON.parse(data || "").tax)/100
+}
 
 
 interface Props {
@@ -30,11 +32,14 @@ const calculateTotal = () => {
   let tempTotal = 0
   let tempTax = 0
   cart.forEach(item => {
+    console.log(item.price)
     tempTotal += item.price
     tempTax += item.price * taxRate
   })
   setTotal(tempTotal)
   setTax(tempTax)
+  
+  console.log(taxRate)
 }
 
 const removeItemFromCart = (itemToRemove: ItemObj) => {
@@ -55,6 +60,9 @@ window.localStorage.setItem('cart', JSON.stringify(filteredCart))
 useEffect(()=> {
   calculateTotal()
 }, [cart])
+
+console.log('total',total)
+  console.log('tax', tax)
 
     return (
         <section id='sidebar'>
@@ -81,7 +89,7 @@ useEffect(()=> {
           <h4>Discount</h4>
           <p>$0.00</p>
         </div>
-        <div id="checkout-btn" className='hover' onClick={()=> {if (total !== 0) {setShowTipScreen(true)}}}><h3>Checkout</h3><p>${total/100}</p></div>
+        <div id="checkout-btn" className='hover' onClick={()=> {if (total !== 0) {setShowTipScreen(true)}}}><h3>Checkout</h3><p>${((total/100)+ (tax/100)).toFixed(2)}</p></div>
       </section>
     )
 }

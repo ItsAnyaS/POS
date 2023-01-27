@@ -1,5 +1,4 @@
 #keypad{
-    border: 1px solid black;
     width: calc(70%);
     height: calc(90vh - 60px);
     display: flex;
@@ -25,6 +24,7 @@
     font-size: 2.6em;
     color: rgba(0, 0, 0, 0.491);
     font-weight: 400;
+    max-width: 100%;
 }
 
 
@@ -43,4 +43,5 @@
     align-items: center;
     justify-content: center;
     font-size: 2em;
+    cursor: pointer;
 }

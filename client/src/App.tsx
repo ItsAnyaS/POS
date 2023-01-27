@@ -97,7 +97,7 @@ const value = useMemo(() => ({ globalUser, setGlobalUser }), [globalUser, setGlo
           { isLoggedIn && <Route path='/' element={<Main setCart={setCart}/>}/>}
           {isLoggedIn &&  <Route path='/categories/:id' element={ <ItemsByCategory setCart={setCart}/>}/>}
          {isLoggedIn && <Route path='/transactions' element={ <TransactionPage/> }/> }
-         {isLoggedIn && <Route path='/keypad' element={ <Keypad/> }/> }
+         {isLoggedIn && <Route path='/keypad' element={ <Keypad setCart={setCart} /> }/> }
           <Route path='login' element={<Login setIsSigningUp={setIsSigningUp} setIsLoggedIn={setIsLoggedIn}/>}/>
         </Routes>
        {showTipScreen && <TipPopUp cart={cart} setShowTipScreen={setShowTipScreen} submitTip={submitTip}/>}

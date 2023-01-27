@@ -3,7 +3,9 @@ import {BsChevronUp} from 'react-icons/bs'
 import { RxCross2 } from 'react-icons/rx'
 let taxRate = 0
 let data = window.localStorage.getItem('taxRate')
-taxRate = parseFloat(JSON.parse(data || "").tax)/100
+if (data){
+  taxRate = parseFloat(JSON.parse(data || "").tax)/100
+}
 
 
 interface ItemObj {

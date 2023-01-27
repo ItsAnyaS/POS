@@ -3,7 +3,9 @@ import { RxCross2 } from 'react-icons/rx'
 let taxRate = 0
 //! Need to change tax rate with each user
 let data = window.localStorage.getItem('taxRate')
-taxRate = parseFloat(JSON.parse(data || "").tax)/100
+if (data){
+    taxRate = parseFloat(JSON.parse(data || "").tax)/100
+}
 
 const fifteenPercent = 0.15
 const eighteenPercent = 0.18
