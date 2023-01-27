@@ -13,6 +13,7 @@ import {useEffect, useState, createContext, useMemo } from 'react'
 import {BrowserRouter as Router, Route, Routes, redirect } from 'react-router-dom'
 import Cookies from 'js-cookie';
 import Login from './components/Login';
+import Keypad from './components/Keypad';
 export const UserContext = createContext({})
 
 interface ItemObj {
@@ -79,7 +80,7 @@ const getUser = async() => {
 
 useEffect(()=> {
   getUser()
-})
+}, [])
 
 const value = useMemo(() => ({ globalUser, setGlobalUser }), [globalUser, setGlobalUser]);
 
@@ -96,6 +97,7 @@ const value = useMemo(() => ({ globalUser, setGlobalUser }), [globalUser, setGlo
           { isLoggedIn && <Route path='/' element={<Main setCart={setCart}/>}/>}
           {isLoggedIn &&  <Route path='/categories/:id' element={ <ItemsByCategory setCart={setCart}/>}/>}
          {isLoggedIn && <Route path='/transactions' element={ <TransactionPage/> }/> }
+         {isLoggedIn && <Route path='/keypad' element={ <Keypad/> }/> }
           <Route path='login' element={<Login setIsSigningUp={setIsSigningUp} setIsLoggedIn={setIsLoggedIn}/>}/>
         </Routes>
        {showTipScreen && <TipPopUp cart={cart} setShowTipScreen={setShowTipScreen} submitTip={submitTip}/>}

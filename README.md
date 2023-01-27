@@ -5,3 +5,4 @@ This app can be launched on your devices by first running "npm install".  After 
 
 
 - add keypad for custom amount items (will need name as well)
+- add "Add Category" button 

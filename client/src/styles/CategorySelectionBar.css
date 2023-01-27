@@ -1,0 +1,165 @@
+#category-selection {
+    width: calc(70% - 40px);
+    height: 60px;
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    gap: 20px;
+    align-items: center;
+    }
+    
+    .category-item{
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.711);
+    
+    }
+    
+    .category-item-selected {
+      color: dodgerblue;
+    }
+    
+    .category-item p {
+      text-transform: capitalize;
+    }
+    
+    .highlighted {
+      color: dodgerblue;
+    }
+    
+    #category-menu-icon {
+    font-size: 1.3em;
+    }
+
+    .custom-category-menu-drop-down {
+        position: absolute;
+        left: -85px;
+        top: 25px;
+        z-index: 100;
+        background-color: white;
+        border-radius: 5px;
+        border: 1px solid rgba(0, 0, 0, 0.282);
+        font-size: 0.9em;
+        }
+        .category-dd-container{
+          margin-left: auto;
+          position: relative;
+        }
+        
+        .custom-category-menu-drop-down div {
+          /* padding: 10px; */
+          padding: 10px 20px;
+          /* width: 100%; */
+        }
+        
+        .custom-category-menu-drop-down div:hover {
+          cursor: pointer;
+          background-color: dodgerblue;
+          color: white;
+          
+        }
+    
+    #add-item-model {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.267);
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    
+    #add-item-model-container {
+      width: 40%;
+      height: 50%;
+      background-color: white;
+      padding: 50px;
+      position: relative;
+    }
+    
+    #add-new-item-btn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background-color: dodgerblue;
+      color: white;
+      border: none;
+      width: 20%;
+      font-size: 1.4em;
+      padding: 10px;
+      font-weight: 600;
+    }
+    
+    
+    #add-item-model-form fieldset{
+    width: 75%;
+    margin:10px 0;
+    padding: 3px 8px;
+    border: 1px solid rgba(0, 0, 0, 0.495);
+    }
+    
+    
+    #add-item-model-form input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 1.1em;
+    }
+    
+    
+    #add-item-model-form select {
+    font-size: 1.2em;
+    padding: 5px;
+    text-transform: capitalize;
+    }
+
+    #add-category-model{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.343);
+        z-index: 4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #add-category-model-container{
+        height: 250px;
+        width: 400px;
+        background-color: white;
+        padding: 20px;
+    }
+    #add-category-form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    #add-category-form h2{
+        font-size: 2em;
+    }
+
+    #add-category-form input {
+        width: 60%;
+    }
+
+    #add-category-form button {
+        background-color: dodgerblue;
+        cursor: pointer;
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        font-size: 1.2em;
+        width: 200px;
+        margin-top: 30px;
+    }
+
+    #add-category-form button:hover{
+        transform: scale(1.05);
+        transition: 100ms;
+    }
