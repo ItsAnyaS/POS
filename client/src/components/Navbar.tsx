@@ -16,10 +16,10 @@ let user = Cookies.get('auth-token')
             let req = await fetch(`/auth/${user}`)
             let res = await req.json()
             if (res.message === 'valid user'){
-            console.log('logged in')
+            // console.log('logged in')
             setUsable(true)
             }else {
-            console.log('not logged in')
+            // console.log('not logged in')
             setUsable(false)
             }
       }else {

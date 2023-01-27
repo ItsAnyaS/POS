@@ -1,11 +1,10 @@
 import React from "react";
 import { useEffect, useState, Dispatch, SetStateAction  } from 'react'
 import {FiTrash2} from 'react-icons/fi'
-import TipPopUp from "./TipPopUp";
-import Cookies from 'js-cookie'
-import { useNavigate } from "react-router-dom";
-//! Need to change tax rate with each user
-const taxRate = 0.10
+let taxRate = 0
+let data = window.localStorage.getItem('taxRate')
+taxRate = parseFloat(JSON.parse(data || "").tax)/100
+
 
 interface Props {
     cart: ItemObj[],
@@ -26,7 +25,6 @@ const Sidebar: React.FC<Props> = ({cart, setCart, setShowTipScreen}) => {
 
 const [total, setTotal] = useState(0)
 const [tax, setTax] = useState(0)
-const navigate = useNavigate()
 
 const calculateTotal = () => {
   let tempTotal = 0
@@ -50,30 +48,11 @@ let filteredCart = cart.filter(item => {
 })
 setCart(filteredCart)
 window.localStorage.setItem('cart', JSON.stringify(filteredCart))
-console.log(filteredCart)
-}
-
-const validateUser = async() => {
-  let user = Cookies.get('auth-token')
-  if (user){
-    let req = await fetch(`/auth/${user}`)
-    let res = await req.json()
-    if (res.message === 'valid user'){
-      console.log('logged in')
-
-    }else {
-      console.log('not logged in')
-      navigate('/')
-    }
-  }else { 
-    navigate('/')
-     
-  }
+// console.log(filteredCart)
 }
 
 
 useEffect(()=> {
-
   calculateTotal()
 }, [cart])
 
@@ -102,7 +81,7 @@ useEffect(()=> {
           <h4>Discount</h4>
           <p>$0.00</p>
         </div>
-        <div id="checkout-btn" className='hover' onClick={()=> {if (total != 0) {setShowTipScreen(true)}}}><h3>Checkout</h3><p>${total/100}</p></div>
+        <div id="checkout-btn" className='hover' onClick={()=> {if (total !== 0) {setShowTipScreen(true)}}}><h3>Checkout</h3><p>${total/100}</p></div>
       </section>
     )
 }

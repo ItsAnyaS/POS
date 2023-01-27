@@ -62,17 +62,16 @@ const getUser = async() => {
     let req = await fetch(`/auth/${user}`)
     let res = await req.json()
     if (res.message === 'valid user'){
-      console.log('logged in')
+      // console.log('logged in')
       setIsLoggedIn(true)
       getCartFromLocalStorage()
     }else {
-      console.log('not logged in')
+      // console.log('not logged in')
       setIsLoggedIn(false)
       return redirect('/login')
     }
   }else {
     setIsLoggedIn(false)
-     
   }
 }
 
@@ -80,13 +79,10 @@ const getUser = async() => {
 
 useEffect(()=> {
   getUser()
-}, [])
-
-console.log(globalUser)
+})
 
 const value = useMemo(() => ({ globalUser, setGlobalUser }), [globalUser, setGlobalUser]);
 
-// console.log(globalUser)
   return (
     <div className="App" onClick={()=> {setIsShowingCustomCatMenu(false)}}>
       <UserContext.Provider value={value}>

@@ -32,6 +32,7 @@ const CategorySelectionBar: React.FC<Props> = ({setIsShowingCustomCatMenu,isShow
     const logoutUser =() => {
         Cookies.remove('auth-token')
         setIsLoggedIn(false)
+        window.localStorage.removeItem('taxRate')
       }
 
     useEffect(()=> {

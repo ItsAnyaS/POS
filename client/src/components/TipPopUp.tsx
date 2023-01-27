@@ -1,5 +1,9 @@
-import React, {Dispatch, SetStateAction, useEffect} from "react";
+import React, {Dispatch, SetStateAction} from "react";
 import { RxCross2 } from 'react-icons/rx'
+let taxRate = 0
+//! Need to change tax rate with each user
+let data = window.localStorage.getItem('taxRate')
+taxRate = parseFloat(JSON.parse(data || "").tax)/100
 
 const fifteenPercent = 0.15
 const eighteenPercent = 0.18
@@ -22,9 +26,7 @@ interface ItemObj {
 const TipPopUp: React.FC<Props> = ({setShowTipScreen, cart, submitTip}) => {
 
     const getCartTotal =() => {
-        //!change tax rate
         let tax = 0
-        let taxRate = 0.10
         let total = 0
         cart.forEach(item => {
             total += item.price

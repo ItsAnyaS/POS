@@ -11,7 +11,6 @@ interface Props {
 
 
 const SignUp: React.FC<Props> = ({setIsLoggedIn, setIsSigningUp}) => {
-    console.log(stateSalesTax.Alabama.toFixed(2))
     const [userDetails, setUserDetails] = useState({country: 'United States', state: "Alabama"})
     const handleChange = (name:string, value: string) => {
         setUserDetails({
@@ -35,9 +34,8 @@ const SignUp: React.FC<Props> = ({setIsLoggedIn, setIsSigningUp}) => {
             body: JSON.stringify(userDetails)
         })
         let res = await req.json()
-        console.log(res)
        if (res.message === 'account successfully created'){
-        window.localStorage.setItem('tax', findStateTax())
+        window.localStorage.setItem('taxRate', JSON.stringify({tax: findStateTax().toFixed(2)}))
         Cookies.set('auth-token', res.authToken)
         setIsLoggedIn(true)
         setIsSigningUp(false)

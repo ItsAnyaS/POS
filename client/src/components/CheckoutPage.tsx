@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, Dispatch, SetStateAction} from "react";
 import {BsChevronUp} from 'react-icons/bs'
 import { RxCross2 } from 'react-icons/rx'
+let taxRate = 0
+let data = window.localStorage.getItem('taxRate')
+taxRate = parseFloat(JSON.parse(data || "").tax)/100
 
 
 interface ItemObj {
@@ -50,8 +53,6 @@ const calculateCartTotal = () => {
 }   
 
 const calculateTax =() => {
-  //! Tax rate needs to change based on user
-  let taxRate = 0.10
   let tax = 0
   cart.forEach((item) => {
     // console.log(item.price* taxRate)
@@ -78,7 +79,7 @@ const createTransaction =async() => {
             sessionId: 2
           })
       })
-      let res = await req.json()
+      // let res = await req.json()
       if (req.ok){
         setShowCheckoutScreen(false)
         setCart([])
