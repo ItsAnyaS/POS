@@ -20,7 +20,7 @@ const Login: React.FC<Props> = ({setIsLoggedIn, setIsSigningUp}) => {
     const navigate = useNavigate()
 
     const loginUser = async() => {
-        let req = await fetch('http://localhost:3000/auth/login', {
+        let req = await fetch('/auth/login', {
             method: "POST",
             headers: {"Content-type": "application/json"},
             body: JSON.stringify({

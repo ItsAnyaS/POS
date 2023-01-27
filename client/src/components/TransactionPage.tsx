@@ -26,7 +26,7 @@ const TransactionPage = () => {
     const [transactions, setTransactions] = useState<TransactionObj[]>([])
 
     const getTransactions = async() => {
-        let req = await fetch('http://localhost:3000/transactions/b9e56fe2-dced-4e6a-bdfa-facbe01a0bca')
+        let req = await fetch('/transactions/b9e56fe2-dced-4e6a-bdfa-facbe01a0bca')
         let res = await req.json()
         setTransactions(res)
     }
@@ -34,7 +34,7 @@ const TransactionPage = () => {
     const getUser = async() => {
         let user = Cookies.get('auth-token')
         if (user){
-          let req = await fetch(`http://localhost:3000/auth/${user}`)
+          let req = await fetch(`/auth/${user}`)
           let res = await req.json()
           if (res.message === 'valid user'){
             console.log('logged in')

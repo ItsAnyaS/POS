@@ -29,7 +29,7 @@ const SignUp: React.FC<Props> = ({setIsLoggedIn, setIsSigningUp}) => {
 
     const handleSignUp = async(e: React.SyntheticEvent) => {
         e.preventDefault()
-        let req = await fetch('http://localhost:3000/auth/signup', {
+        let req = await fetch('/auth/signup', {
             method: "POST",
             headers: {"Content-type": "application/json"},
             body: JSON.stringify(userDetails)

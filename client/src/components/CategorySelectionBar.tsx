@@ -24,7 +24,7 @@ const CategorySelectionBar: React.FC<Props> = ({setIsShowingCustomCatMenu,isShow
     const [isShowingModel, setIsShowingModel] = useState<boolean>(false)
 
     const getCategories = async() => {
-        let req = await fetch('http://localhost:3000/categories')
+        let req = await fetch('/categories')
         let res = await req.json()
         setCategories(res)
     }

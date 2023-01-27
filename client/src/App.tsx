@@ -59,7 +59,7 @@ setShowCheckoutScreen(true)
 const getUser = async() => {
   let user = Cookies.get('auth-token')
   if (user){
-    let req = await fetch(`http://localhost:3000/auth/${user}`)
+    let req = await fetch(`/auth/${user}`)
     let res = await req.json()
     if (res.message === 'valid user'){
       console.log('logged in')

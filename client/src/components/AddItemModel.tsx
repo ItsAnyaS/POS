@@ -33,7 +33,7 @@ const AddItemModel: React.FC<Props> = ({setIsShowingModel, categories}) => {
 
         const handleFormSubmit = async(e: React.SyntheticEvent) => {
             e.preventDefault()
-            let req = await fetch('http://localhost:3000/items', {
+            let req = await fetch('/items', {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json"

@@ -66,7 +66,7 @@ const createTransaction =async() => {
   let tip = (finalTipAmount*100).toFixed()
   let tax = calculateTax()
   let total = calculateCartTotal() + tax + parseInt(tip)
-  let req = await fetch('http://localhost:3000/transactions', {
+  let req = await fetch('/transactions', {
       method: 'POST',
       headers: {"Content-type": "application/json"},
       body: JSON.stringify(

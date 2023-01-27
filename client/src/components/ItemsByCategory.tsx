@@ -21,7 +21,7 @@ const { id } = useParams()
 const [items, setItems] = useState<ItemObj[]>([])
 
 const getItems = async() => {
-    let req = await fetch(`http://localhost:3000/categories/items/${id}`)
+    let req = await fetch(`/categories/items/${id}`)
     let res = await req.json()
     // console.log(res)
     setItems(res)

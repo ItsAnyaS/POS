@@ -20,7 +20,7 @@ const [items, setItems] = useState<ItemObj[]>([])
 
     const getItems = async() => {
         try{
-            let req = await fetch('http://localhost:3000/items')
+            let req = await fetch('/items')
             let res = await req.json()
             setItems(res)
         }catch(err){
