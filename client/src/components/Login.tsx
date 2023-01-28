@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, Dispatch, SetStateAction } from "react";
 import { stateSalesTax } from "../salesTax";
-
+import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie'
 
 interface UserCredentialsObj {
@@ -16,7 +16,7 @@ interface Props {
 
 const Login: React.FC<Props> = ({setIsLoggedIn, setIsSigningUp}) => {
     const [userCredentials, setUserCredentials] = useState<UserCredentialsObj>({username: '', password: ''})
-
+    const navigate = useNavigate()
 
    
 
@@ -45,6 +45,7 @@ const Login: React.FC<Props> = ({setIsLoggedIn, setIsSigningUp}) => {
             }
             let tax = findStateTax()
             window.localStorage.setItem('taxRate', JSON.stringify({tax:tax.toFixed(2)}))
+            navigate('/')
         }
     }
 

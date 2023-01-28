@@ -71,9 +71,9 @@ const createTransaction =async() => {
   let tip = (finalTipAmount*100).toFixed()
   let tax = calculateTax()
   let total = calculateCartTotal() + tax + parseInt(tip)
-  console.log('tip', tip)
-  console.log('tax', tax)
-  console.log('total', total)
+  // console.log('tip', tip)
+  // console.log('tax', tax)
+  // console.log('total', total)
   let authToken = Cookies.get('auth-token')
   let req = await fetch('/transactions', {
       method: 'POST',
