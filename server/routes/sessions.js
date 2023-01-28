@@ -13,7 +13,7 @@ const decodeToken = (token) => {
 
 router.get('/', async(req,res)=>{
     try{
-        let sessions = await Session.findAll()
+        let sessions = await Session.findAll({order: [ [ 'updatedAt', 'DESC' ]]})
         return res.json(sessions)
     }catch(err){
         console.log(err)
@@ -76,13 +76,16 @@ router.get('/transactions/:sessionId', async(req, res)=> {
 //* Update session each item a transaction is completed
 router.patch('/update/:token', async(req, res)=> {
     let { number_of_transactions, total_tips, total_tax, number_of_items_sold, total_net } = req.body
+    console.log(number_of_transactions, total_tips, total_tax, number_of_items_sold, total_net )
     let uuid = decodeToken(req.params.token).data
     console.log(uuid)
     try {
         if (uuid){
             let user = await User.findOne({where: {uuid: uuid}})
+            console.log(user)
             if (user){
                 let session =  await Session.findOne({where: {userId: user.id}, order: [ [ 'updatedAt', 'DESC' ]]})
+                console.log(session)
                 if (number_of_transactions){
                     session.update({number_of_transactions: session.number_of_transactions + number_of_transactions})
                 }

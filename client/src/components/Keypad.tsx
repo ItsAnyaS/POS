@@ -62,9 +62,9 @@ return (
                     <div className="keypad-number-card" onClick={()=> {appendNumberToAmount(7)}}><p>7</p></div>
                     <div className="keypad-number-card" onClick={()=> {appendNumberToAmount(8)}}><p>8</p></div>
                     <div className="keypad-number-card" onClick={()=> {appendNumberToAmount(9)}}><p>9</p></div>
-                    <div className="keypad-number-card" onClick={()=> {setCustomAmountToBeAdded('0')}}><p>C</p></div>
+                    <div className="keypad-number-card" onClick={()=> {setCustomAmountToBeAdded('000')}}><p>C</p></div>
                     <div className="keypad-number-card" onClick={()=> {appendNumberToAmount(0)}}><p>0</p></div>
-                    <div className="keypad-number-card" onClick={()=> {setLocalCart({id: 1, price: parseFloat(customAmountToBeAdded)*100, name: 'custom item', photoLink: 'https://static.thenounproject.com/png/1554489-200.png', categoryId: 1})}}><p><BsArrowReturnRight/></p></div>
+                    <div className="keypad-number-card" onClick={()=> { console.log() ;setLocalCart({id: 1, price: parseFloat(customAmountToBeAdded)*100, name: 'custom item', photoLink: 'https://static.thenounproject.com/png/1554489-200.png', categoryId: 1})}}><p><BsArrowReturnRight/></p></div>
                 </div>
             </form>
         </div>

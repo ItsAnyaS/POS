@@ -62,6 +62,7 @@ const calculateTax =() => {
     tax += item.price * taxRate
   })
   // console.log("tax pre100", tax)
+  tax = Math.floor(tax)
   return tax
 }
 
@@ -70,6 +71,9 @@ const createTransaction =async() => {
   let tip = (finalTipAmount*100).toFixed()
   let tax = calculateTax()
   let total = calculateCartTotal() + tax + parseInt(tip)
+  console.log('tip', tip)
+  console.log('tax', tax)
+  console.log('total', total)
   let authToken = Cookies.get('auth-token')
   let req = await fetch('/transactions', {
       method: 'POST',

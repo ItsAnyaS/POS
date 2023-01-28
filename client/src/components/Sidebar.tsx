@@ -32,14 +32,14 @@ const calculateTotal = () => {
   let tempTotal = 0
   let tempTax = 0
   cart.forEach(item => {
-    console.log(item.price)
+    // console.log(item.price)
     tempTotal += item.price
     tempTax += item.price * taxRate
   })
   setTotal(tempTotal)
   setTax(tempTax)
   
-  console.log(taxRate)
+  // console.log(taxRate)
 }
 
 const removeItemFromCart = (itemToRemove: ItemObj) => {
@@ -61,8 +61,8 @@ useEffect(()=> {
   calculateTotal()
 }, [cart])
 
-console.log('total',total)
-  console.log('tax', tax)
+// console.log('total',total)
+  // console.log('tax', tax)
 
     return (
         <section id='sidebar'>
