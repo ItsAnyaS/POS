@@ -25,6 +25,7 @@
   padding: 20px;
   width: calc(70% - 40px);
   flex-wrap: wrap;
+  height: calc(90vh - 100px);
 }
 
 .item-card {
@@ -33,7 +34,23 @@
 	box-shadow: 5px 5px 24px rgba(0, 0, 0, 0.1)  ; 
 	-webkit-box-shadow: 5px 5px 24px rgba(0, 0, 0, 0.1)  ; 
 	-moz-box-shadow: 5px 5px 24px rgba(0, 0, 0, 0.1)  ; 
+  position: relative;
 }
+
+.item-card-delete-btn{
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  color: red;
+  font-size: 1.8em;;
+  cursor: pointer;
+}
+
+.item-card-delete-btn:hover {
+  transform: scale(1.05);
+  transition: 100ms;
+}
+
 
 .item-card img {
   width: 150px;

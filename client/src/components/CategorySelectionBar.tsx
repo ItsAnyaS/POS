@@ -16,10 +16,11 @@ interface CategoryObj {
 interface Props {
     setIsShowingCustomCatMenu: Dispatch<SetStateAction<boolean>>,
     setIsLoggedIn: Dispatch<SetStateAction<boolean>>,
-    isShowingCustomCatMenu: boolean
+    isShowingCustomCatMenu: boolean,
+    setIsDeletingItems: Dispatch<SetStateAction<boolean>>,
 }
 
-const CategorySelectionBar: React.FC<Props> = ({setIsShowingCustomCatMenu,isShowingCustomCatMenu, setIsLoggedIn}) => {
+const CategorySelectionBar: React.FC<Props> = ({setIsShowingCustomCatMenu,isShowingCustomCatMenu, setIsDeletingItems, setIsLoggedIn}) => {
 
     const [categories, setCategories] = useState<CategoryObj[]>([])
     const [isShowingModel, setIsShowingModel] = useState<boolean>(false)
@@ -87,7 +88,9 @@ const CategorySelectionBar: React.FC<Props> = ({setIsShowingCustomCatMenu,isShow
             <BsThreeDots id="category-menu-icon" onClick={(e)=> {e.stopPropagation();setIsShowingCustomCatMenu(true)}}/>
            { isShowingCustomCatMenu && <div className="custom-category-menu-drop-down">
                 <div className="dd-add-new-item" onClick={()=> {setIsShowingCustomCatMenu(false); setIsShowingModel(true)}}>Add Item</div>
+                <div className="dd-add-new-item" onClick={()=> {setIsDeletingItems(true)}}>Delete Item</div>
                 <div onClick={()=> {setIsShowingNewCategoryModel(true)}}>Add Category</div>
+                {/* <div >Delete Category</div> */}
                 <div className="dd-logout" onClick={()=> {logoutUser()}}>LOGOUT</div>
             </div>}
             </div>

@@ -27,5 +27,22 @@ router.post('/', async(req, res)=> {
     }
 })
 
+//* Delete item
+
+router.delete('/:id', async(req,res)=> {
+    let id = req.params.id
+    try{
+        let item = await Item.destroy({where: {id: id}})
+        if (item){
+            return res.json(item)
+        }else {
+            return res.json({message: "Item doesn't exist"})
+        }
+    }catch (err){
+        console.log(err)
+        return res.json(err)
+    }
+})
+
 
 module.exports = router

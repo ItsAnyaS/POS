@@ -16,7 +16,7 @@ const CategoryItem: React.FC<Props> = ({category}) => {
 
     // const [isHighlighted, setIsHightLighted] = useState<boolean>(false)
 return (
-    <div className="category-item" key={category?.id} >
+    <div className="category-item" key={category?.id}  onContextMenu={()=> console.log('right click')}>
         <NavLink style={{"color": "rgba(0, 0, 0, 0.711)", "textDecoration": "none"}} to={`/categories/${category?.id}`}>
             <p  >{category?.name}</p>
         </NavLink>

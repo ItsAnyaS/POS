@@ -39,6 +39,7 @@ const [globalUser, setGlobalUser] = useState<UserObj>({authToken: ''})
 const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true)
 const [isShowingCustomCatMenu, setIsShowingCustomCatMenu] = useState<boolean>(false)
 const [isSigningUp, setIsSigningUp] = useState<boolean>(false)
+const [isDeletingItems, setIsDeletingItems] = useState<boolean>(false)
 // const navigate = useNavigate()
 
 
@@ -90,14 +91,14 @@ const value = useMemo(() => ({ globalUser, setGlobalUser }), [globalUser, setGlo
       <Router>
         {!isLoggedIn && isSigningUp && <SignUp setIsLoggedIn={setIsLoggedIn} setIsSigningUp={setIsSigningUp}/>}
         {!isLoggedIn && !isSigningUp && <Login setIsSigningUp={setIsSigningUp} setIsLoggedIn={setIsLoggedIn}/>}
-       { isLoggedIn && <Navbar/>}
-       { isLoggedIn && <CategorySelectionBar setIsLoggedIn={setIsLoggedIn} isShowingCustomCatMenu={isShowingCustomCatMenu} setIsShowingCustomCatMenu={setIsShowingCustomCatMenu}/>}
-       { isLoggedIn && <Sidebar cart={cart} setCart={setCart} setShowTipScreen={setShowTipScreen}/>}
+        { isLoggedIn && <Navbar/>}
+        { isLoggedIn && <CategorySelectionBar setIsDeletingItems={setIsDeletingItems} setIsLoggedIn={setIsLoggedIn} isShowingCustomCatMenu={isShowingCustomCatMenu} setIsShowingCustomCatMenu={setIsShowingCustomCatMenu}/>}
+        { isLoggedIn && <Sidebar cart={cart} setCart={setCart} setShowTipScreen={setShowTipScreen}/>}
         <Routes>
-          { isLoggedIn && <Route path='/' element={<Main setCart={setCart}/>}/>}
-          {isLoggedIn &&  <Route path='/categories/:id' element={ <ItemsByCategory setCart={setCart}/>}/>}
-         {isLoggedIn && <Route path='/transactions' element={ <TransactionPage/> }/> }
-         {isLoggedIn && <Route path='/keypad' element={ <Keypad setCart={setCart} /> }/> }
+          { isLoggedIn && <Route path='/' element={<Main isDeletingItems={isDeletingItems} setIsDeletingItems={setIsDeletingItems} setCart={setCart}/>}/>}
+          { isLoggedIn &&  <Route path='/categories/:id' element={ <ItemsByCategory setCart={setCart}/>}/>}
+          { isLoggedIn && <Route path='/transactions' element={ <TransactionPage/> }/> }
+          { isLoggedIn && <Route path='/keypad' element={ <Keypad setCart={setCart} /> }/> }
           <Route path='login' element={<Login setIsSigningUp={setIsSigningUp} setIsLoggedIn={setIsLoggedIn}/>}/>
         </Routes>
        {showTipScreen && <TipPopUp cart={cart} setShowTipScreen={setShowTipScreen} submitTip={submitTip}/>}

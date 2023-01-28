@@ -32,13 +32,15 @@
 
     .custom-category-menu-drop-down {
         position: absolute;
-        left: -85px;
+        left: -135px;
         top: 25px;
         z-index: 100;
         background-color: white;
         border-radius: 5px;
         border: 1px solid rgba(0, 0, 0, 0.282);
         font-size: 0.9em;
+        min-width: 143px;
+        text-align: center;
         }
         .category-dd-container{
           margin-left: auto;
@@ -47,8 +49,8 @@
         
         .custom-category-menu-drop-down div {
           /* padding: 10px; */
-          padding: 10px 20px;
-          /* width: 100%; */
+          padding: 10px 10px;
+          /* min-width: 130px; */
         }
         
         .custom-category-menu-drop-down div:hover {
