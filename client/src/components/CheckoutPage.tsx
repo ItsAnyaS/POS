@@ -74,7 +74,7 @@ const createTransaction =async() => {
   // console.log('tax', tax)
   // console.log('total', total)
   let authToken = Cookies.get('auth-token')
-  let req = await fetch('/transactions', {
+  let req = await fetch('/api/transactions', {
       method: 'POST',
       headers: {"Content-type": "application/json"},
       body: JSON.stringify(
