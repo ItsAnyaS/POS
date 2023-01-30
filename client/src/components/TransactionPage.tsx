@@ -27,7 +27,7 @@ const TransactionPage = () => {
     const [transactions, setTransactions] = useState<TransactionObj[]>([])
 
     const getTransactions = async() => {
-        let req = await fetch(`/transactions/${authToken}`)
+        let req = await fetch(`/transactions/api/${authToken}`)
         let res = await req.json()
         setTransactions(res)
     }

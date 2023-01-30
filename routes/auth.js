@@ -5,14 +5,15 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const myPlaintextPassword = 's0/\/\P4$$w0rD';
 const { User, Session } = require('../models')
+const JWT_SECRET_KEY = 'this is the secret key'
 
 
 //* Create token with 24 expiry
  const signToken = (user) => {
-    return jwt.sign({ exp: Math.floor(Date.now() / 1000) + (60 * 60), data: user.uuid}, process.env.JWT_SECRET_KEY);
+    return jwt.sign({ exp: Math.floor(Date.now() / 1000) + (60 * 60), data: user.uuid}, JWT_SECRET_KEY);
 }
  const decodeToken = (token) => {
-    return jwt.verify(token, process.env.JWT_SECRET_KEY)
+    return jwt.verify(token, JWT_SECRET_KEY)
 }
 
 // const encryptPassword =(hash) => {

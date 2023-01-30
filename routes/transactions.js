@@ -13,15 +13,15 @@ const { Transaction, User, Session, Item } = require('../models')
 
 //* Index (Get all transactions)
 
-router.get('/', async(req, res)=> {
-    try {
-        let transactions = await Transaction.findAll()
-        return res.json(transactions)
-    }catch(err){
-        console.log(err)
-        return res.status(500)
-    }
-})
+// router.get('/', async(req, res)=> {
+//     try {
+//         let transactions = await Transaction.findAll()
+//         return res.json(transactions)
+//     }catch(err){
+//         console.log(err)
+//         return res.status(500)
+//     }
+// })
 
 //* Create a transaction, this will be used when a transaction is completed in the client side
 router.post('/', async(req,res)=> {

@@ -5,15 +5,15 @@ const { User } = require('../models')
 
 //* User index (get all users)
 
-router.get('/', async(req,res)=> {
-    try {
-        let users = await User.findAll()
-        return res.json(users)
-    }catch(err){
-        console.log(err)
-        return res.status(500)
-    }
-})
+// router.get('/', async(req,res)=> {
+//     try {
+//         let users = await User.findAll()
+//         return res.json(users)
+//     }catch(err){
+//         console.log(err)
+//         return res.status(500)
+//     }
+// })
 
 //* Get a user by id
 

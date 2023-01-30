@@ -9,9 +9,9 @@ const path = require('path')
 app.use(express.json())
 app.use(cors())
 
-
+console.log(process.env.NODE_ENV)
+app.use(express.static(path.join(__dirname, "client/build")))
 if (process.env.NODE_ENV === 'production'){
-    app.use(express.static(path.join(__dirname, "client/build")))
 }
 
 
@@ -27,8 +27,12 @@ app.use('/items', itemRouter)
 app.use('/categories', categoryRouter)
 app.use('/users', userRouter)
 app.use('/sessions', sessionRouter)
-app.use('/transactions', transactionRouter)
+app.use('/transactions/api', transactionRouter)
 app.use('/auth', authRouter)
+
+app.get('*', (req,res)=> {
+    res.sendFile(path.join(__dirname, "client/build/index.html"))
+})
 
 
 

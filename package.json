@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "description": "POS is a Point of sale terminal desinged to work on any platform with limited computing power.",
   "main": "server",
+  "engines": {
+    "node": "16.18.0",
+    "npm": "8.19.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon bin/dev",
-    "start": "node bin/dev"
+    "start": "node bin/dev",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
