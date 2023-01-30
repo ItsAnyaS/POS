@@ -76,10 +76,10 @@ const [items, setItems] = useState<ItemObj[]>([])
                 items.map(item => {
                     return (
                         <div className="item-card" key={item?.id} onClick={()=> {setCart(prev => [...prev, item]); setLocalCart(item)}}>
-                        <img src="https://images.squarespace-cdn.com/content/v1/5d74df302807231bcc6b66c0/1634255918525-9FITTW6D9NXY2R8BBVWA/espresso+shot.jpg" alt="alt" className="item-image" />
+                        <img src={ item?.photoLink || "https://images.squarespace-cdn.com/content/v1/5d74df302807231bcc6b66c0/1634255918525-9FITTW6D9NXY2R8BBVWA/espresso+shot.jpg"} alt={`Picture of ${item.name}`} className="item-image" />
+                          { isDeletingItems && <div className="item-card-delete-btn" onClick={(e)=> {deleteItem(item.id, e)}}>{<MdRemoveCircle/>}</div>}
                         <div className="item-title">
                           <p>{item?.name}</p>
-                          { isDeletingItems && <div className="item-card-delete-btn" onClick={(e)=> {deleteItem(item.id, e)}}>{<MdRemoveCircle/>}</div>}
                         </div>
                     </div>
                     )
