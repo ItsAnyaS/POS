@@ -1,7 +1,7 @@
 {
   "name": "pos",
   "version": "1.0.0",
-  "description": "POS is a Point of sale terminal desinged to work on any platform with limited computing power.",
+  "description": "POS is a Point of sale terminal designed to work on any platform with limited computing power.",
   "main": "server",
   "engines": {
     "node": "16.18.0",
@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon bin/dev",
     "start": "node server.js",
-    "heroku-postbuild": "cd client && npm i @types/js-cookie && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
