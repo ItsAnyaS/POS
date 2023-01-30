@@ -67,7 +67,6 @@ const calculateTax =() => {
 }
 
 const createTransaction =async() => {
-//!need to change session id
   let tip = (finalTipAmount*100).toFixed()
   let tax = calculateTax()
   let total = calculateCartTotal() + tax + parseInt(tip)
@@ -114,11 +113,15 @@ const createTransaction =async() => {
 
 useKey('Enter', handleCheckout)
 
+useEffect(()=> {
+  window.alert('Hit enter key on laptop or press "Tap" on mobile to complete transaction')
+}, [])
+
 return (
-    <div id="checkout-page">
+    <div id="checkout-page" >
         <div id="checkout-page-container">
         <RxCross2 id="tip-pop-up-close-btn" onClick={()=> {setShowCheckoutScreen(false)}}/>
-            <div className="tap-container">
+            <div className="tap-container" onClick={()=> {handleCheckout()}}>
                 <BsChevronUp id="tap-chevron"/>
                 <h4>TAP</h4>
             </div>

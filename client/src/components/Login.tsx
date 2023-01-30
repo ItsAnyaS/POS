@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, Dispatch, SetStateAction } from "react";
+import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { stateSalesTax } from "../salesTax";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie'
@@ -59,6 +59,12 @@ const Login: React.FC<Props> = ({setIsLoggedIn, setIsSigningUp}) => {
         e.preventDefault()
         loginUser()
     }
+
+    useEffect(()=> {
+        setTimeout(()=> {
+            window.alert('You can use username: "test", and password: "123" for quick login')
+        }, 500)
+    }, [])
 
 
     return (
