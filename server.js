@@ -2,10 +2,17 @@ const express = require('express')
 const jwt = require('jsonwebtoken');
 // const env = require('dotenv')
 const { sequelize } = require('./models')
+const PORT = process.env.PORT || 3000
 const cors = require('cors')
 const app = express()
+const path = require('path')
 app.use(express.json())
 app.use(cors())
+
+
+if (process.env.NODE_ENV === 'production'){
+    app.use(express.static(path.join(__dirname, "client/build")))
+}
 
 
 const itemRouter = require('./routes/items')
@@ -25,7 +32,7 @@ app.use('/auth', authRouter)
 
 
 
-app.listen({port: 3000}, async() => {
+app.listen(PORT, async() => {
     console.log('server is up')
     await sequelize.authenticate()
     console.log('database connected')
