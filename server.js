@@ -1,5 +1,6 @@
 const express = require('express')
 const jwt = require('jsonwebtoken');
+require('dotenv/config')
 // const env = require('dotenv')
 const { sequelize } = require('./models')
 const PORT = process.env.PORT || 3000
