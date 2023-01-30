@@ -8,4 +8,3 @@ POS is a Point of sale terminal designed to work on any platform with limited co
 
 - all transactions view on transactions page
 
-- add ability to delete items and categories
