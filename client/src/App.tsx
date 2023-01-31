@@ -79,17 +79,12 @@ const getUser = async() => {
   }
 }
 
-const getItems = async() => {
-  let req = await fetch('/items')
-  let res = await req.json()
-  setItems(res)
-}
+
 
 
 
 useEffect(()=> {
   getUser()
-  getItems()
 }, [])
 
 const value = useMemo(() => ({ globalUser, setGlobalUser }), [globalUser, setGlobalUser]);
