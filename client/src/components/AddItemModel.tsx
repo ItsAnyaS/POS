@@ -7,12 +7,23 @@ interface CategoryObj {
     id: number
 }
 
-interface Props {
-    setIsShowingModel: Dispatch<SetStateAction<boolean>>;
-    categories: CategoryObj[]
+interface ItemObj {
+    id: number,
+    name: string,
+    photoLink: string,
+    price: number,
+    categoryId: number
 }
 
-const AddItemModel: React.FC<Props> = ({setIsShowingModel, categories}) => {
+
+
+interface Props {
+    setIsShowingModel: Dispatch<SetStateAction<boolean>>;
+    categories: CategoryObj[],
+    setItems: Dispatch<SetStateAction<ItemObj[]>>;
+}
+
+const AddItemModel: React.FC<Props> = ({setIsShowingModel, categories, setItems}) => {
 
     const [AddItemForm, setAddItemForm] = useState({categoryId: 1})
 
@@ -44,6 +55,7 @@ const AddItemModel: React.FC<Props> = ({setIsShowingModel, categories}) => {
 
             if (req.ok){
                 setIsShowingModel(false)
+                setItems(prev => [...prev, AddItemForm])
             }
         }
     

@@ -11,26 +11,16 @@ interface ItemObj {
 }
 interface Props {
     setCart: Dispatch<SetStateAction<ItemObj[]>>;
+    setItems: Dispatch<SetStateAction<ItemObj[]>>;
     setIsDeletingItems: Dispatch<SetStateAction<boolean>>,
-    isDeletingItems: boolean
+    isDeletingItems: boolean,
+    items: ItemObj[],
 
 }
 
-const Main: React.FC<Props> = ({setCart, setIsDeletingItems, isDeletingItems}) => {
+const Main: React.FC<Props> = ({setCart, setIsDeletingItems, isDeletingItems, items, setItems}) => {
 
 
-
-const [items, setItems] = useState<ItemObj[]>([])
-
-    const getItems = async() => {
-        try{
-            let req = await fetch('/items')
-            let res = await req.json()
-            setItems(res)
-        }catch(err){
-            console.log(err)
-        }
-    }
 
     const setLocalCart = (item: ItemObj) => {
 
@@ -62,10 +52,15 @@ const [items, setItems] = useState<ItemObj[]>([])
             setItems(filteredItems)
         }
     }
+    const getItems = async() => {
+        let req = await fetch('/items')
+        let res = await req.json()
+        setItems(res)
+      }
 
-    useEffect(()=> {
+      useEffect(()=> {
         getItems()
-    }, [])
+      }, [])
 
     
     return (

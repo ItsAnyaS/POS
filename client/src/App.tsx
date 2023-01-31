@@ -40,6 +40,7 @@ const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true)
 const [isShowingCustomCatMenu, setIsShowingCustomCatMenu] = useState<boolean>(false)
 const [isSigningUp, setIsSigningUp] = useState<boolean>(false)
 const [isDeletingItems, setIsDeletingItems] = useState<boolean>(false)
+const [items, setItems] = useState<ItemObj[]>([])
 // const navigate = useNavigate()
 
 
@@ -51,6 +52,7 @@ const getCartFromLocalStorage = () => {
     window.localStorage.setItem('cart', JSON.stringify([]))
   }
 }
+
 
 const submitTip = (tipAmount: number) => {
 setFinalTipAmount(tipAmount)
@@ -77,10 +79,17 @@ const getUser = async() => {
   }
 }
 
+const getItems = async() => {
+  let req = await fetch('/items')
+  let res = await req.json()
+  setItems(res)
+}
+
 
 
 useEffect(()=> {
   getUser()
+  getItems()
 }, [])
 
 const value = useMemo(() => ({ globalUser, setGlobalUser }), [globalUser, setGlobalUser]);
@@ -92,11 +101,11 @@ const value = useMemo(() => ({ globalUser, setGlobalUser }), [globalUser, setGlo
         {!isLoggedIn && isSigningUp && <SignUp setIsLoggedIn={setIsLoggedIn} setIsSigningUp={setIsSigningUp}/>}
         {!isLoggedIn && !isSigningUp && <Login setIsSigningUp={setIsSigningUp} setIsLoggedIn={setIsLoggedIn}/>}
         { isLoggedIn && <Navbar/>}
-        { isLoggedIn && <CategorySelectionBar setIsDeletingItems={setIsDeletingItems} setIsLoggedIn={setIsLoggedIn} isShowingCustomCatMenu={isShowingCustomCatMenu} setIsShowingCustomCatMenu={setIsShowingCustomCatMenu}/>}
+        { isLoggedIn && <CategorySelectionBar setItems={setItems} setIsDeletingItems={setIsDeletingItems} setIsLoggedIn={setIsLoggedIn} isShowingCustomCatMenu={isShowingCustomCatMenu} setIsShowingCustomCatMenu={setIsShowingCustomCatMenu}/>}
         { isLoggedIn && <Sidebar cart={cart} setCart={setCart} setShowTipScreen={setShowTipScreen}/>}
         <Routes>
-          { isLoggedIn && <Route path='/' element={<Main isDeletingItems={isDeletingItems} setIsDeletingItems={setIsDeletingItems} setCart={setCart}/>}/>}
-          { isLoggedIn &&  <Route path='/categories/:id' element={ <ItemsByCategory setCart={setCart}/>}/>}
+          { isLoggedIn && <Route path='/' element={<Main items={items} setItems={setItems} isDeletingItems={isDeletingItems} setIsDeletingItems={setIsDeletingItems} setCart={setCart}/>}/>}
+          { isLoggedIn &&  <Route path='/categories/:id' element={ <ItemsByCategory items={items} isDeletingItems={isDeletingItems} setIsDeletingItems={setIsDeletingItems} setItems={setItems} setCart={setCart}/>}/>}
           { isLoggedIn && <Route path='/transactions' element={ <TransactionPage/> }/> }
           { isLoggedIn && <Route path='/keypad' element={ <Keypad setCart={setCart} /> }/> }
           <Route path='login' element={<Login setIsSigningUp={setIsSigningUp} setIsLoggedIn={setIsLoggedIn}/>}/>

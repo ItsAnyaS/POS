@@ -13,14 +13,23 @@ interface CategoryObj {
     id: number
 }
 
+interface ItemObj {
+    id: number,
+    name: string,
+    photoLink: string,
+    price: number,
+    categoryId: number
+}
+
 interface Props {
     setIsShowingCustomCatMenu: Dispatch<SetStateAction<boolean>>,
     setIsLoggedIn: Dispatch<SetStateAction<boolean>>,
     isShowingCustomCatMenu: boolean,
     setIsDeletingItems: Dispatch<SetStateAction<boolean>>,
+    setItems: Dispatch<SetStateAction<ItemObj[]>>;
 }
 
-const CategorySelectionBar: React.FC<Props> = ({setIsShowingCustomCatMenu,isShowingCustomCatMenu, setIsDeletingItems, setIsLoggedIn}) => {
+const CategorySelectionBar: React.FC<Props> = ({setIsShowingCustomCatMenu,isShowingCustomCatMenu, setIsDeletingItems, setIsLoggedIn, setItems}) => {
 
     const [categories, setCategories] = useState<CategoryObj[]>([])
     const [isShowingModel, setIsShowingModel] = useState<boolean>(false)
@@ -48,6 +57,7 @@ const CategorySelectionBar: React.FC<Props> = ({setIsShowingCustomCatMenu,isShow
             let res = await req.json()
             if (req.ok){
                 setCategories([...categories, res])
+                setIsShowingNewCategoryModel(false)
             }
       }
 
@@ -94,7 +104,7 @@ const CategorySelectionBar: React.FC<Props> = ({setIsShowingCustomCatMenu,isShow
                 <div className="dd-logout" onClick={()=> {logoutUser()}}>LOGOUT</div>
             </div>}
             </div>
-           { isShowingModel && <AddItemModel categories={categories} setIsShowingModel={setIsShowingModel}/>}
+           { isShowingModel && <AddItemModel categories={categories} setItems={setItems} setIsShowingModel={setIsShowingModel}/>}
           {isShowingNewCategoryModel && <div id="add-category-model" onClick={()=> {setIsShowingNewCategoryModel(false)}}>
                 <div id="add-category-model-container" onClick={(e)=> {e.stopPropagation()}}>
                     <form id="add-category-form" onSubmit={(e)=> {handleAddCategoryFormSubmit(e)}}>
