@@ -9,7 +9,7 @@ const decodeToken = (token) => {
     return jwt.verify(token, JWT_SECRET_KEY)
 }
 
-const { Transaction, User, Session, Item } = require('../models') 
+const { Transaction, User, Session } = require('../models') 
 
 //* Index (Get all transactions)
 
@@ -25,8 +25,8 @@ const { Transaction, User, Session, Item } = require('../models')
 
 //* Create a transaction, this will be used when a transaction is completed in the client side
 router.post('/', async(req,res)=> {
-    const {number_of_items, items, total_cost, total_tax, total_tip, authToken} = req.body
     try{
+        const {number_of_items, items, total_cost, total_tax, total_tip, authToken} = req.body
         let uuid = decodeToken(authToken).data
         let user = await User.findOne({where: {uuid: uuid}})
         let session =  await Session.findOne({where: {userId: user.id}, order: [ [ 'updatedAt', 'DESC' ]]})
@@ -34,7 +34,7 @@ router.post('/', async(req,res)=> {
         return res.json(transaction)
     }catch(err){
         console.log(err)
-        return res.json(err).status(500)
+        return res.status(400).json(err)
     }
 })
 

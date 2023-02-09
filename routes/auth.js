@@ -2,8 +2,6 @@ const express = require('express')
 const jwt = require('jsonwebtoken');
 const router = express.Router()
 const bcrypt = require('bcrypt');
-const saltRounds = 10;
-const myPlaintextPassword = 's0/\/\P4$$w0rD';
 const { User, Session } = require('../models')
 const JWT_SECRET_KEY = 'this is the secret key'
 
@@ -16,18 +14,11 @@ const JWT_SECRET_KEY = 'this is the secret key'
     return jwt.verify(token, JWT_SECRET_KEY)
 }
 
-// const encryptPassword =(hash) => {
-//     bcrypt.hash(myPlaintextPassword, saltRounds, function(err, hash) {
-//         // Store hash in your password DB.
-//         console.log(hash)
-//     });
-// }
 
 //* Sign in (this triggers the creation of a session)
 
 router.post('/login', async(req,res)=> {
     let {username, password } = req.body
-    // console.log(process.env.JWT_SECRET_KEY)
     try{
         let user = await  User.findOne({where: {username}})
         if (user){
